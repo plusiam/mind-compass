@@ -1,0 +1,111 @@
+/* 원고 활동지 모양(2~13차시 웹학습지) */
+.ws-head{display:grid;grid-template-columns:minmax(0,1fr) auto;border-top:2px solid #2f5d4e;border-bottom:2px solid #2f5d4e;margin-bottom:12px}
+.ws-title{background:#e3ece6;padding:10px 14px;text-align:center;display:grid;gap:2px}
+.ws-title b{font-size:1.25rem;font-weight:700;color:#2f4f43;letter-spacing:.04em}
+.ws-title span{font-size:1rem;color:#3f5f53}
+.ws-info{display:grid;align-content:space-around;gap:4px;padding:6px 12px;font-size:.85rem;color:#3f5f53;min-width:9.5rem;border-left:1px solid #9fb8ad}
+.ws-info span{border-bottom:1px solid #9fb8ad;padding-bottom:2px}
+@media screen{
+  .ws-info.print-only{display:none}
+  .ws-head:has(.ws-info.print-only){grid-template-columns:minmax(0,1fr)}
+}
+.ws-info span:last-child{border-bottom:0}
+.ws-box{border:1px solid #9fb8ad;border-radius:4px;padding:10px 12px;display:grid;gap:8px;background:#fff}
+.ws-lab{font-weight:700;font-size:.95rem}
+.ws-inline{display:flex;align-items:center;gap:8px;min-width:0}
+.ws-inline > .field,.ws-inline > textarea{flex:1;min-width:0}
+.ws-no{flex:none;min-width:2.2em;font-weight:800;color:var(--muted)}
+.ws-tw{overflow-x:auto}
+.ws-table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff}
+.ws-table th,.ws-table td{border:1px solid #5d8a78;padding:4px;vertical-align:top}
+.ws-table thead th{background:#e3ece6;font-weight:700;font-size:.92rem;padding:6px 4px;text-align:center}
+.ws-table th.rl{background:#f3f6f4;font-weight:700;font-size:.9rem;text-align:center;vertical-align:middle;width:7.5em}
+.ws-table th.corner{width:7.5em}
+.ws-table td .field{border:0;border-radius:0;min-height:2.6em;padding:4px;background:transparent}
+.ws-table td textarea.field{min-height:4.2em}
+.ws-table caption{caption-side:top;font-weight:700;background:#e3ece6;border:1px solid #5d8a78;border-bottom:0;padding:6px}
+.ws-kv th.rl{width:10em}
+.ws-checks{display:grid;gap:6px}
+.ws-checks .tog{justify-content:flex-start;border-radius:10px;text-align:left;display:flex;gap:8px;align-items:center}
+.ws-checks.inline{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.ws-checks.inline .ws-lab{margin-right:4px}
+.ws-checks .tog .bx{flex:none;display:inline-block;width:20px;height:20px;line-height:16px;text-align:center;border:2px solid currentColor;border-radius:4px;font-size:.85rem}
+.ws-list{list-style:none;border:1px solid #9fb8ad;border-radius:4px;padding:8px 12px;display:grid;gap:4px;background:#fafcfb}
+.sentence{line-height:2.4;font-size:1.02rem}
+.sentence input{display:inline-block;max-width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;padding:2px 4px;margin:0 2px;text-align:center}
+.sentence input:focus{outline:none;border-bottom-color:var(--brand);background:var(--brand-soft)}
+.story{line-height:1.75}
+.story p+p{margin-top:6px}
+.story-title{font-weight:800;text-align:center}
+
+.ws-ans{display:grid;gap:6px}
+.ws-pic{border:1px solid #5d8a78;min-height:12rem;display:flex;align-items:flex-start;justify-content:center;padding:6px;color:#55606b;font-weight:700;background:#fff}
+.ws-row2{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:8px}
+.mark-story p{line-height:1.9}
+.mark-story .ms{cursor:pointer;border-radius:4px;padding:1px 0}
+.mark-story .ms:hover{background:var(--brand-soft)}
+.mark-story .ms.u{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.mark-story .ms.w{text-decoration:underline wavy;text-decoration-color:#c2410c;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.only-note{background:#fff7e8;border:1px solid #f0dcb0;border-radius:12px;padding:10px 12px;font-size:.95rem;margin-bottom:12px}
+
+/* 5차시 감정 와이파이 */
+.wifi{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.wifi-svg{width:100%;max-width:340px;height:auto}
+.wifi-in{display:grid;gap:8px}
+/* 4차시 당근마켓 칸 */
+.market{border:2px solid #e07a2f;border-radius:8px;overflow:hidden;background:#fff}
+.market-h{background:#e9782f;color:#fff;font-weight:800;font-size:1.25rem;padding:8px 14px;text-align:center}
+.market-h input{border:0;border-bottom:2px solid #fff;background:transparent;color:#fff;text-align:center;font-weight:800;font-size:1rem}
+.market-h input::placeholder{color:#ffe7d6}
+.market-c{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:10px;padding:12px;border-top:1px solid #f1c8a8}
+.market-l{display:grid;gap:6px}
+.market-l b{font-size:.98rem}
+.market-l b.r{text-align:right}
+.market-pic{border:1px solid #5d6f80;min-height:9rem;display:flex;align-items:flex-end;justify-content:center;padding:6px;color:#8a929b;font-size:.78rem;text-align:center}
+.buy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #333}
+.buy-c{border-right:1px solid #333;border-bottom:1px solid #333;padding:8px;display:grid;gap:4px;min-width:0}
+.buy-c:nth-child(3n){border-right:0}
+.buy-c b{font-size:.88rem}
+
+@media (max-width:560px){
+  .ws-head{grid-template-columns:minmax(0,1fr)}
+  .ws-info{display:none}
+  .wifi,.market-c{grid-template-columns:minmax(0,1fr)}
+  .buy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .buy-c:nth-child(3n){border-right:1px solid #333}
+  .buy-c:nth-child(2n){border-right:0}
+  .ws-table th.rl,.ws-table th.corner{width:4.5em}
+}
+body.capturing .ws-checks .tog[aria-pressed="false"]{opacity:.9}
+
+@media print{
+  /* 원고처럼: 화면 머리·이름 줄 대신 활동지 머리(학교·학년·반·이름)만 */
+  body:has(.ws-head) .top, body:has(.ws-head) .who, .only-note{display:none!important}
+  .part-title{font-size:11pt;margin-bottom:1.5mm}
+  .ws-head{grid-template-columns:minmax(0,1fr) 42mm}
+  .ws-head{margin-bottom:3mm}
+  .ws-title{padding:2mm 3mm}
+  .ws-title b{font-size:13pt}
+  .ws-title span{font-size:10pt}
+  .ws-info{display:grid!important;font-size:8.5pt}
+  .ws-box{padding:2mm 3mm;gap:1.5mm}
+  .ws-table th,.ws-table td{padding:1mm}
+  .ws-table thead th{font-size:9pt}
+  .ws-table th.rl{font-size:9pt}
+  .ws-table td .field,.ws-table td .cap-field{border:0!important;min-height:12mm}
+  .ws-checks .tog{min-height:auto;padding:.5mm 2mm;border:0!important}
+  .ws-checks .tog .bx{width:3.5mm;height:3.5mm;line-height:3mm;font-size:7pt}
+  .ws-checks .tog[aria-pressed="false"]{display:flex!important}
+  html .ws-checks .tog{border:0!important;background:none!important;color:var(--ink)!important}
+  .ws-checks{gap:.5mm}
+  .market-pic{min-height:30mm}
+  .ws-pic{min-height:45mm}
+  .mark-story p{line-height:1.6}
+  .mark-story .ms:hover{background:none}
+  html.blank .mark-story .ms{text-decoration:none!important}
+  .buy-c{min-height:26mm}
+  .sentence .cap-text{min-width:28mm;text-align:center}
+  html.blank .sentence input{border:0!important;border-bottom:.3mm solid #333!important}
+  html.blank .market-h input{border-bottom:.3mm solid #fff!important;background:transparent!important}
+  html.blank .ws-table td .field,html.blank .ws-table td textarea{border:0!important}
+}

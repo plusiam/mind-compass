@@ -118,6 +118,21 @@ body.cap-note .note-card .want[aria-pressed="false"]{display:none}
 .qr-modal.big .qr-svg{width:min(66vh,80vw)}
 .qr-modal.big .qr-u{font-size:clamp(.9rem,2.2vh,1.4rem)}
 
+/* 인쇄 고르기 창 */
+.pm-box{width:min(440px,100%);text-align:left;justify-items:stretch}
+.pm-box fieldset{border:1.5px solid var(--line);border-radius:12px;padding:8px 12px;display:grid;gap:6px}
+.pm-box legend{font-weight:800;font-size:.9rem;padding:0 4px}
+.pm-box label{display:flex;align-items:center;gap:8px;min-height:40px;font-weight:700}
+.pm-box label small{font-weight:600;color:var(--muted)}
+.pm-box input[type=radio]{width:20px;height:20px;accent-color:var(--brand)}
+.pm-note{font-size:.82rem;color:var(--muted)}
+.pm-pdf{font-size:.9rem}
+.pm-pdf:empty{display:none}
+
+/* 모둠판(그림) */
+.board{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.board-note{font-size:.88rem;color:var(--muted);margin-top:8px}
+
 /* QR 모음 인쇄(첫 화면) */
 .qr-sheet h2{font-size:1.1rem}
 .qr-sheet .qs-sub{font-size:.85rem;color:var(--muted);margin-bottom:8px}
@@ -172,6 +187,23 @@ body.typing .bar{display:none}
   .part[hidden]{display:none!important}
   body:has(.parts) .top .sub{display:none}
   .screen-only{display:none!important}
+  /* 빈 학습지: 입력칸을 그대로 칸으로, 고르기 단추는 모두 보이게 */
+  html.blank .field, html.blank textarea{border:.3mm solid #888!important;background:#fff!important}
+  html.blank textarea{resize:none}
+  html.blank [aria-pressed="false"]{display:inline-flex!important}
+  html.blank .sent[aria-pressed="false"], html.blank .pick button[aria-pressed="false"]{display:flex!important}
+  html.blank .tog{background:none!important;color:var(--ink)!important;border:.3mm solid #999!important}
+  html.blank .star, html.blank .mode .lab + .tog ~ .guide{display:none!important}
+  html.blank .star{display:none!important}
+  /* 모둠판은 용지 폭 가득 */
+  body:has(.board-part:not([hidden])) .wrap{max-width:none!important;padding:0!important}
+  /* 모둠판: 용지 한 장에 그림만 */
+  body:has(.board-part:not([hidden])) .top, body:has(.board-part:not([hidden])) .who, body:has(.board-part:not([hidden])) .only-note, .board-part .part-title, .board-part .part-sub, .board-part .board-note, .board-part .credit, body:has(.board-part:not([hidden])) main > .credit{display:none!important}
+  body:has(.board-part:not([hidden])) .sheet{margin:0;padding:0}
+  .board{border:0!important;width:100%;max-height:270mm;object-fit:contain;break-inside:avoid}
+  html[data-paper="A3L"] .board{max-height:280mm}
+  html[data-paper="A4L"] .board{max-height:197mm}
+  html[data-paper="A3P"] .board{max-height:270mm}
   /* 보통 인쇄에는 쪽지를 넣지 않음 */
   body:not(.print-solo) .note-card, .note-acts, .note-help{display:none!important}
   /* 쪽지·메시지 카드만 인쇄 */
