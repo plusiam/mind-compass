@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-path="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#1f6b78">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="assets/css/base.css?v=20261104c">
+<link rel="stylesheet" href="assets/css/base.css?v=20261104d">
 <style>
 .hero{background:var(--brand);color:#fff;padding:26px 0 30px}
 .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:.86rem;font-weight:700}
@@ -50,6 +50,11 @@
 .tool .go.new:hover{background:var(--brand-ink)}
 .tool .go.old{background:#fff;border:1.5px solid #e0c98f;color:#6b4800}
 .tool .go.old:hover{background:#fff8e6}
+.tool .row2{display:flex;gap:6px}
+.tool .row2 .go{flex:1}
+.tool .qb{flex:none;min-width:56px;min-height:48px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:800;font-size:.85rem}
+.tool .qb:hover{background:var(--soft)}
+.qr-all{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
 .tool .paper{font-size:.9rem;color:var(--muted);background:var(--soft);border-radius:10px;padding:8px 10px;text-align:center}
 
 .flow{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:12px;box-shadow:var(--shadow)}
@@ -117,6 +122,11 @@
         <li>1차시 출발 카드: 인쇄·PDF·그림으로만 꺼내 봉투에 넣어요(17차시까지 비공개).</li>
         <li>14차시 「선생님께 드리는 쪽지」: 학생이 인쇄해 접어 드리거나 그림·PDF로 보여 드려요.</li>
       </ul></div>
+      <div class="tip-c"><b>📱 QR로 학생 기기에서 열기</b><ul>
+        <li>카드의 「QR」이나 각 활동지 아래쪽 「📱 QR」을 누르면 전자칠판에 큰 QR이 떠요. 학생은 태블릿·크롬북 카메라로 찍어 열어요.</li>
+        <li>QR 모음(A4)을 뽑아 교실에 붙여 두어도 돼요.</li>
+      </ul>
+      <div class="qr-all"><button class="btn primary" type="button" id="qr-print">🖨️ QR 모음 인쇄·PDF</button><button class="btn" type="button" id="qr-home">📱 첫 화면 QR</button></div></div>
       <div class="tip-c"><b>🔗 함께 쓰는 기존 도구</b><ul>
         <li>3·5·6·7·13차시의 기존 도구는 여한기가 2025~2026년에 만든 공개 자료로, 연구회 개발 자료는 아니에요.</li>
         <li>새 창으로 열려요. 기존 도구도 학생 기록을 서버로 보내지 않아요.</li>
@@ -135,7 +145,8 @@
   </div>
 </div>
 
-<script src="assets/js/common.js?v=20261104c"></script>
+<script src="assets/vendor/qrcode.js"></script>
+<script src="assets/js/common.js?v=20261104d"></script>
 <script>
 (function(){
   'use strict';
@@ -209,17 +220,54 @@
     if(NEW[n]){
       t.appendChild(el('span', 'kind new', '원고 맞춤 웹 활동지'));
       t.appendChild(el('span', 'when', NEW[n].name + ' — ' + NEW[n].when));
-      var a = el('a', 'go new', '웹 활동지 열기 →'); a.href = n + '/'; t.appendChild(a);
+      var a = el('a', 'go new', '웹 활동지 열기 →'); a.href = n + '/';
+      t.appendChild(withQr(a, MC.BASE + n + '/', n + '차시 ' + l[1]));
     } else if(OLD[n]){
       t.appendChild(el('span', 'kind old', '함께 쓰면 좋은 기존 도구 · 여한기 공개 자료'));
       t.appendChild(el('span', 'when', OLD[n].when));
-      var b = el('a', 'go old', OLD[n].name + ' ↗'); b.href = OLD[n].url; b.target = '_blank'; b.rel = 'noopener'; t.appendChild(b);
+      var b = el('a', 'go old', OLD[n].name + ' ↗'); b.href = OLD[n].url; b.target = '_blank'; b.rel = 'noopener';
+      t.appendChild(withQr(b, OLD[n].url, n + '차시 · ' + OLD[n].name));
     } else {
       t.appendChild(el('p', 'paper', '📄 종이 활동지로 운영해요'));
     }
     c.appendChild(t);
     return c;
   }
+
+  function withQr(link, url, title){
+    var r = el('div', 'row2'); r.appendChild(link);
+    var q = el('button', 'qb', 'QR'); q.type = 'button'; q.setAttribute('aria-label', title + ' QR 코드 보기');
+    q.addEventListener('click', function(){ MC.showQr(url, title); });
+    r.appendChild(q); return r;
+  }
+
+  /* QR 모음(A4): 첫 화면 + 원고 맞춤 활동지(활동지 2 포함) + 기존 도구 */
+  function qrSheet(){
+    var items = [[MC.BASE, '마음여행 길잡이', '첫 화면']];
+    L.forEach(function(l){
+      var n = l[0];
+      if(NEW[n]){
+        var pn = NEW[n].name.split(' · ');
+        items.push([MC.BASE + n + '/', n + '차시 ' + l[1], n === 15 ? NEW[n].name : '활동지 1 ' + pn[0]]);
+        if(n !== 15) items.push([MC.BASE + n + '/#part-2', n + '차시 ' + l[1], '활동지 2 ' + (pn[1] || '')]);
+      } else if(OLD[n]){
+        items.push([OLD[n].url, n + '차시 · ' + OLD[n].name, '함께 쓰는 기존 도구']);
+      }
+    });
+    var s = el('div', 'qr-sheet');
+    s.appendChild(el('h2', '', '🧭 마음여행 길잡이 QR 모음'));
+    s.appendChild(el('p', 'qs-sub', '태블릿·크롬북 카메라로 찍으면 바로 열려요. · plusiam.github.io/mind-compass/'));
+    var g = el('div', 'qs-grid');
+    items.forEach(function(it){
+      var c = el('div', 'qs-cell'); var sv = el('div', 'qr-svg'); sv.innerHTML = MC.qrSvg(it[0]); c.appendChild(sv);
+      c.appendChild(el('b', '', it[1])); c.appendChild(el('span', '', it[2] + ' · ' + it[0].replace(/^https:\/\//, '')));
+      g.appendChild(c);
+    });
+    s.appendChild(g);
+    return s;
+  }
+  document.getElementById('qr-print').addEventListener('click', function(){ MC.printOnly(qrSheet(), true); });
+  document.getElementById('qr-home').addEventListener('click', function(){ MC.showQr(MC.BASE, '마음여행 길잡이'); });
 
   var list = document.getElementById('list');
   function render(){
