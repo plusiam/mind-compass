@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15차시 다시 튀어 오르는 힘 · 감정 4분면 | 마음여행 길잡이</title>
+<meta name="description" content="『마음여행』 15차시 연계 웹 활동지: 감정 4분면으로 나를 차분하고 편안하게 하는 나만의 방법 고르기">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104c">
+<style>
+.quad-wrap{display:grid;gap:6px;margin-top:6px}
+.ax{font-size:.9rem;font-weight:700;color:var(--muted);text-align:center}
+.ax-row{display:flex;justify-content:space-between;font-size:.9rem;font-weight:700;color:var(--muted)}
+.quad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:#fffefb}
+.cell{position:relative;min-width:0;min-height:170px;padding:10px;display:flex;flex-direction:column;gap:8px;border-color:var(--ink)}
+.cell:nth-child(1){border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+.cell:nth-child(2){border-bottom:1.5px solid var(--ink)}
+.cell:nth-child(3){border-right:1.5px solid var(--ink)}
+.cell .where{font-size:.74rem;color:var(--muted);font-weight:600}
+.star{align-self:flex-start;border:1.5px dashed #c9c1b2;background:#fff;border-radius:999px;padding:4px 10px;font-size:.86rem;font-weight:700;color:var(--muted);min-height:36px}
+.star[aria-pressed="true"]{border-style:solid;border-color:var(--accent);background:#fff6dc;color:#6b4d00}
+.star .s{font-size:1.05rem}
+.mlist{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+.mlist li{max-width:100%;overflow-wrap:anywhere;display:inline-flex;align-items:center;gap:4px;background:var(--brand-soft);color:var(--brand-ink);border-radius:9px;padding:3px 4px 3px 9px;font-size:.9rem;font-weight:600}
+.mlist button{border:0;background:transparent;width:26px;height:26px;border-radius:7px;color:var(--brand-ink);font-size:.85rem}
+.mlist button:hover{background:#cfe5e7}
+.add{display:flex;gap:6px;margin-top:auto}
+.add input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:9px;padding:6px 8px;background:#fff;min-height:38px;font-size:.92rem}
+.add input:focus{border-color:var(--brand);outline:none}
+.add button{flex:none;border:0;background:var(--brand);color:#fff;border-radius:9px;padding:0 10px;font-weight:700;font-size:.9rem;min-height:38px}
+.okline{margin-top:10px;background:#f3f8ef;border:1px solid #d8e7cf;border-radius:10px;padding:9px 12px;font-size:.93rem}
+
+.mine{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}
+.mrow .i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);font-weight:800;color:var(--muted);margin-top:8px}
+.mrow .when{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.when-lab{font-size:.82rem;color:var(--muted);width:100%}
+
+.sentence{line-height:2.4;font-size:1.02rem}
+.sentence input{display:inline-block;width:min(16em,100%);border:0;border-bottom:2px solid var(--ink);background:transparent;padding:2px 4px;margin:0 2px;text-align:center}
+.sentence input:focus{outline:none;border-bottom-color:var(--brand);background:var(--brand-soft)}
+
+@media (pointer:coarse){
+  .star{min-height:44px}
+  .mlist button{width:40px;height:40px}
+  .add input,.add button{min-height:48px}
+}
+body.capturing .add, body.capturing .mlist button, body.capturing .star[aria-pressed="false"]{display:none}
+@media (max-width:560px){
+  .cell{min-height:150px;padding:8px}
+  .add{flex-direction:column}
+  .add button{min-height:34px}
+  .mlist li{font-size:.84rem}
+  .cell .where{font-size:.7rem}
+  .star{font-size:.8rem;padding:3px 8px}
+}
+@media print{
+  .add,.mlist button{display:none!important}
+  .star[aria-pressed="false"]{display:none}
+  .star{border:0;background:none;padding:0}
+  .cell{min-height:31mm;padding:2mm;gap:1.5mm}
+  .step{margin:3mm 0}
+  .step h2{margin-bottom:2mm;font-size:11pt}
+  .story{padding:2mm 3mm}
+  .quad-wrap{gap:1mm}
+  .quad{border-width:.5mm}
+  .okline{margin-top:2mm;padding:1.5mm 3mm}
+  .mine{gap:2mm}
+  .mrow{grid-template-columns:7mm 1fr}
+  .mrow > div{display:flex;flex-wrap:wrap;align-items:center;gap:2mm}
+  .mrow .field,.mrow .cap-field{flex:1 1 60mm}
+  .mrow .when{margin:0}
+  .mrow .i{margin-top:0;width:6mm;height:6mm}
+  .when-lab{display:none}
+  .sentence{line-height:2}
+  .sentence input{width:10.5em}
+  .sentence .cap-text{min-width:30mm;text-align:center}
+  .mlist li{background:none;border:.3mm solid #999;padding:.5mm 2mm}
+  .tog[aria-pressed="false"]{display:none}
+  .tog[aria-pressed="true"]{background:none;color:var(--ink);border:.3mm solid #999}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">🧭 마음여행 길잡이</a><span aria-hidden="true">›</span><span>마음돌봄 · 15차시</span></div>
+    <h1>다시 튀어 오르는 힘</h1>
+    <p class="sub">감정 4분면 · 나를 차분하고 편안하게 하는 나만의 방법</p>
+    <p class="q">탐구질문 · 다시 일어서게 하는 힘은 어디에서 올까?</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="sheet" id="sheet">
+    <div class="who">
+      <label>이름 <input id="name" type="text" autocomplete="off" placeholder="쓰지 않아도 돼요"></label>
+      <span class="print-only">15차시 학습 활동지 1 · 감정 4분면</span>
+    </div>
+
+    <section class="step" aria-labelledby="s1">
+      <h2 id="s1"><span class="num">1</span>준호의 발표 날 장면을 읽어 봅시다.</h2>
+      <p class="story">발표 날, 준호는 발표하다가 중간에 말이 막혔다. 자리로 돌아오자 얼굴이 뜨거워지고 ‘역시 나는 안 돼.’라는 생각이 들었다.</p>
+    </section>
+
+    <section class="step" aria-labelledby="s2">
+      <h2 id="s2"><span class="num">2</span>준호의 마음이 있을 것 같은 칸에 ★표를 하고, 나를 차분하고 편안하게 해 주는 방법을 어울리는 칸에 써 봅시다.</h2>
+      <div class="quad-wrap">
+        <div class="ax">에너지 높음 ↑</div>
+        <div class="quad" id="quad"></div>
+        <div class="ax">에너지 낮음 ↓</div>
+        <div class="ax-row"><span>← 기분이 불편함</span><span>기분이 좋음 →</span></div>
+      </div>
+      <p class="okline">※ 네 칸 모두 괜찮은 마음입니다. 칸에는 정답이 없고, 같은 방법을 여러 칸에 써도 됩니다.</p>
+      <details class="help no-print" id="help">
+        <summary>방법이 떠오르지 않으면 눌러 보세요 (방법 후보)</summary>
+        <p class="note">누르면 마지막으로 쓰던 칸의 입력란에 들어가요. 어울리는 칸이 맞으면 「넣기」를 누르세요.</p>
+        <div class="cands" id="cands"></div>
+      </details>
+    </section>
+
+    <section class="step" aria-labelledby="s3">
+      <h2 id="s3"><span class="num">3</span>나만의 방법을 2~3개 골라 어느 칸에 있을 때 쓸지 적어 봅시다.</h2>
+      <div class="mine" id="mine"></div>
+      <p class="note">많이 고르는 것보다 <b>실제로 꺼내 쓸 수 있는 방법</b>이 좋아요. 3개까지 써요.</p>
+    </section>
+
+    <section class="step" aria-labelledby="s4">
+      <h2 id="s4"><span class="num">4</span>가장 먼저 꺼내 볼 나만의 방법을 언제 쓸지 한 줄로 이어 봅시다.</h2>
+      <p class="sentence">(<input id="when" type="text" autocomplete="off" aria-label="언제">) 할 때, 내가 가장 먼저 꺼내 볼 나만의 방법은 (<input id="first" type="text" autocomplete="off" aria-label="나만의 방법" list="methods">)이다.</p>
+    </section>
+    <datalist id="methods"></datalist>
+    <p class="credit print-only">『마음여행』 15차시 연계 웹 활동지 · 마음여행 길잡이 plusiam.github.io/mind-compass/15/</p>
+  </div>
+
+  <details class="teacher sheet">
+    <summary>선생님 안내</summary>
+    <ul>
+      <li>『마음여행』 15차시 정리 단계의 「학습 활동지 1(감정 4분면 · 나만의 방법)」을 웹으로 옮겼습니다. 적용하기의 모둠 방법 지도(A3·포스트잇)는 종이로 합니다. 웹 활동지 없이도 수업은 그대로 됩니다.</li>
+      <li>칸에는 정답이 없습니다. 교사가 준호의 칸이나 방법을 먼저 정해 주지 않고 “왜 그 칸이라고 생각했니?”를 묻습니다.</li>
+      <li>불편한 칸을 벗어나야 할 곳으로, 편안한 칸을 도착점으로 말하지 않습니다. ‘지금 어느 칸에 있는지 알면 다음 행동을 고를 수 있다’로 안내합니다.</li>
+      <li>방법 후보는 막힌 학생만 펼쳐 보게 합니다. 놀기·먹기 같은 기분 전환 방법만 나와도 틀렸다고 하지 않고 “그 방법을 쓴 뒤 발표는 어떻게 될까?”를 물어 16차시로 잇습니다.</li>
+      <li>이 화면의 기록은 선생님께 전달되지 않습니다. 자기 비난이 강하게 드러날 수 있으니 인쇄해 내게 하거나 화면을 함께 보며 수업 당일 개별로 확인합니다. 이 화면은 상담을 대신하지 않습니다.</li>
+      <li>공용 기기에서는 다 쓴 뒤 「내 기록 지우기」를 누르게 합니다.</li>
+      <li>출처: 마크 브래킷(2020). 감정의 발견(임지연 옮김). 북라이프. 무드 미터(Mood Meter)의 두 축을 본 연구회가 초등 고학년 수준으로 단순화함.</li>
+    </ul>
+  </details>
+  <p class="credit">『마음여행』 15차시 연계 · 집필 여한기(대구남부초) · 웹 구현 여한기<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
+</main>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="saved" id="saved">쓰는 내용은 이 기기에만 저장돼요</span>
+    <div class="acts">
+      <button class="btn primary" id="btn-print" type="button">🖨️ 인쇄·PDF</button>
+      <button class="btn" id="btn-img" type="button">🖼️ 그림으로 저장</button>
+      <button class="btn" id="btn-clear" type="button">🧹 내 기록 지우기</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/vendor/html2canvas.min.js"></script>
+<script src="../assets/js/common.js?v=20261104c"></script>
+<script>
+(function(){
+  'use strict';
+  var KEY = 'l15-quadrant';
+  // 칸 순서: 위 왼쪽(불편·높음), 위 오른쪽(좋음·높음), 아래 왼쪽(불편·낮음), 아래 오른쪽(좋음·낮음)
+  var CELLS = [
+    {id:'uh', where:'기분 불편함 · 에너지 높음', short:'불편함·높음'},
+    {id:'ph', where:'기분 좋음 · 에너지 높음',   short:'좋음·높음'},
+    {id:'ul', where:'기분 불편함 · 에너지 낮음', short:'불편함·낮음'},
+    {id:'pl', where:'기분 좋음 · 에너지 낮음',   short:'좋음·낮음'}
+  ];
+  var CANDS = ['닻 내리기','친구에게 하듯 나에게 말하기','따뜻한 손','7차시 마음 상점 아이템','그 밖에 내가 찾은 방법'];
+
+  function blank(){ return {name:'', star:'', methods:{uh:[],ph:[],ul:[],pl:[]}, mine:[{m:'',cells:[]},{m:'',cells:[]},{m:'',cells:[]}], when:'', first:''}; }
+  var st = Object.assign(blank(), MC.load(KEY));
+  CELLS.forEach(function(c){ if(!Array.isArray(st.methods[c.id])) st.methods[c.id]=[]; });
+  var lastCell = 'uh';
+
+  function persist(){ if(MC.save(KEY, st)) MC.markSaved(); renderDatalist(); }
+
+  var quad = document.getElementById('quad');
+  function renderQuad(){
+    quad.innerHTML = '';
+    CELLS.forEach(function(c){
+      var cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.setAttribute('role','group');
+      cell.setAttribute('aria-label', c.where + ' 칸');
+      var on = st.star === c.id;
+      cell.innerHTML =
+        '<span class="where">' + c.where + '</span>' +
+        '<button type="button" class="star" aria-pressed="' + on + '"><span class="s">' + (on?'★':'☆') + '</span> 준호의 마음' + (on?'':' 여기?') + '</button>' +
+        '<ul class="mlist"></ul>' +
+        '<div class="add"><input type="text" maxlength="40" placeholder="방법 쓰기" aria-label="' + c.where + ' 칸에 방법 쓰기"><button type="button">넣기</button></div>';
+      var ul = cell.querySelector('.mlist');
+      st.methods[c.id].forEach(function(m, i){
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(m));
+        var x = document.createElement('button');
+        x.type = 'button'; x.textContent = '✕'; x.setAttribute('aria-label', m + ' 빼기');
+        x.addEventListener('click', function(){ st.methods[c.id].splice(i,1); persist(); renderQuad(); });
+        li.appendChild(x); ul.appendChild(li);
+      });
+      cell.querySelector('.star').addEventListener('click', function(){
+        st.star = (st.star === c.id) ? '' : c.id; persist(); renderQuad();
+      });
+      var inp = cell.querySelector('.add input');
+      inp.addEventListener('focus', function(){ lastCell = c.id; });
+      function add(){
+        var v = inp.value.trim(); if(!v) return;
+        st.methods[c.id].push(v); persist(); renderQuad();
+        var again = quad.querySelectorAll('.add input')[CELLS.indexOf(c)]; if(again) again.focus();
+      }
+      cell.querySelector('.add button').addEventListener('click', add);
+      inp.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); add(); } });
+      quad.appendChild(cell);
+    });
+  }
+
+  var cands = document.getElementById('cands');
+  CANDS.forEach(function(t){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'btn small'; b.textContent = t;
+    b.addEventListener('click', function(){
+      var idx = CELLS.findIndex(function(c){ return c.id === lastCell; });
+      var inp = quad.querySelectorAll('.add input')[idx];
+      inp.value = (t === '그 밖에 내가 찾은 방법') ? '' : t;
+      inp.focus();
+      MC.toast('「' + CELLS[idx].short + '」 칸 입력란에 넣었어요');
+    });
+    cands.appendChild(b);
+  });
+
+  var mine = document.getElementById('mine');
+  function renderMine(){
+    mine.innerHTML = '';
+    st.mine.forEach(function(row, r){
+      var d = document.createElement('div');
+      d.className = 'mrow';
+      d.innerHTML = '<span class="i">' + (r+1) + '</span><div><input class="field" type="text" maxlength="40" list="methods" placeholder="나만의 방법" aria-label="나만의 방법 ' + (r+1) + '"><div class="when"><span class="when-lab">어느 칸에 있을 때 쓸까요? (기분·에너지, 여러 칸 골라도 돼요)</span></div></div>';
+      var inp = d.querySelector('input');
+      inp.value = row.m;
+      inp.addEventListener('input', function(){ row.m = inp.value; persist(); });
+      var w = d.querySelector('.when');
+      CELLS.forEach(function(c){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'tog'; b.textContent = c.short;
+        b.setAttribute('aria-pressed', row.cells.indexOf(c.id) > -1);
+        b.setAttribute('aria-label', c.where + ' 칸에서 쓰기');
+        b.addEventListener('click', function(){
+          var k = row.cells.indexOf(c.id);
+          if(k > -1) row.cells.splice(k,1); else row.cells.push(c.id);
+          b.setAttribute('aria-pressed', k === -1); persist();
+        });
+        w.appendChild(b);
+      });
+      mine.appendChild(d);
+    });
+  }
+
+  var dl = document.getElementById('methods');
+  function renderDatalist(){
+    var seen = {}, html = '';
+    CELLS.forEach(function(c){ st.methods[c.id].forEach(function(m){ if(!seen[m]){ seen[m]=1; html += '<option value="' + m.replace(/"/g,'&quot;') + '">'; } }); });
+    st.mine.forEach(function(r){ if(r.m && !seen[r.m]){ seen[r.m]=1; html += '<option value="' + r.m.replace(/"/g,'&quot;') + '">'; } });
+    dl.innerHTML = html;
+  }
+
+  [['name','name'],['when','when'],['first','first']].forEach(function(p){
+    var el = document.getElementById(p[0]);
+    el.value = st[p[1]] || '';
+    el.addEventListener('input', function(){ st[p[1]] = el.value; persist(); });
+  });
+
+  document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('btn-img').addEventListener('click', function(){ MC.saveImage(document.getElementById('sheet'), '15차시_감정4분면_나만의방법'); });
+  document.getElementById('btn-clear').addEventListener('click', function(){
+    MC.confirmClear(KEY, function(){
+      st = blank();
+      ['name','when','first'].forEach(function(id){ document.getElementById(id).value = ''; });
+      renderQuad(); renderMine(); renderDatalist();
+      document.getElementById('saved').textContent = '쓰는 내용은 이 기기에만 저장돼요';
+    });
+  });
+
+  renderQuad(); renderMine(); renderDatalist();
+})();
+</script>
+</body>
+</html>
