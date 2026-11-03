@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>16차시 도움을 청하는 용기 · 나의 도움망 | 마음여행 길잡이</title>
+<meta name="description" content="『마음여행』 16차시 연계 웹 활동지: 나의 도움망, 도움을 청하는 말(사실·느낌·요청)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104c">
+<style>
+/* 막는 생각 → 알아차리는 말 */
+.block{display:grid;gap:8px}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.3fr);gap:8px;align-items:center}
+.brow .arrow{font-weight:800;color:var(--brand-ink)}
+.brow.eg{color:var(--muted);font-size:.92rem;background:var(--soft);border-radius:10px;padding:8px 10px}
+.brow .say{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.brow .say input{flex:1 1 8em;min-width:0}
+.bhead{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.3fr);gap:8px;font-size:.85rem;font-weight:800;color:var(--muted)}
+.bhead span:nth-child(2){visibility:hidden}
+
+/* 도움망 세 겹: 바깥 ③ 학교 밖 ⊃ ② 학교 안 ⊃ ① 가까운 어른 ⊃ 나 */
+.ring{border:2px solid var(--line);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.ring.r3{background:#f7f6f1}
+.ring.r2{background:#fbfaf6;border-color:#d9d3c6}
+.ring.r1{background:#fff;border-color:#cfc8b8}
+.ring > .rh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.ring > .rh b{font-size:1rem}
+.ring > .rh span{font-size:.84rem;color:var(--muted)}
+.me{align-self:center;display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;margin:4px 0}
+.cand{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.82rem;color:var(--muted)}
+.cand .btn{min-height:34px;padding:3px 9px;font-size:.85rem}
+
+/* 상황 카드 */
+.cards{display:grid;gap:8px}
+.card{border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff;display:grid;gap:6px}
+.card .ct{display:flex;gap:8px}
+.card .ct b{flex:none;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--muted)}
+.card .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.card .row .lab{font-size:.84rem;color:var(--muted);font-weight:700}
+.card .why{flex:1 1 14em;min-width:0}
+
+/* 상황 하나 고르기 */
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:6px}
+.pick button{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px;min-height:48px;line-height:1.45;font-size:.93rem}
+.pick button[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft);font-weight:700}
+.pieces{display:grid;gap:8px;margin-top:10px}
+.piece{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px;align-items:center}
+.piece .pl{font-weight:800}
+.piece .pl small{display:block;font-weight:600;color:var(--muted);font-size:.78rem}
+.tip{background:#f3f8ef;border:1px solid #d8e7cf;border-radius:10px;padding:8px 12px;font-size:.9rem;margin-top:8px}
+
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.chain span{background:var(--brand-soft);color:var(--brand-ink);border-radius:9px;padding:3px 10px;font-weight:700;font-size:.92rem}
+.chain i{font-style:normal;color:var(--brand-ink);font-weight:800}
+.chain small{color:var(--muted);font-weight:600;margin-left:2px}
+
+.sentence{line-height:2.4;font-size:1.02rem}
+.sentence input{display:inline-block;width:min(13em,100%);border:0;border-bottom:2px solid var(--ink);background:transparent;padding:2px 4px;margin:0 2px;text-align:center}
+.sentence input:focus{outline:none;border-bottom-color:var(--brand);background:var(--brand-soft)}
+.two-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.two-in label{display:grid;gap:4px;font-weight:700;font-size:.93rem}
+.ask{background:#fff7e8;border:1px solid #f0dcb0;border-radius:12px;padding:10px 12px;font-size:.95rem;margin-top:18px}
+
+@media (max-width:560px){
+  .brow,.bhead{grid-template-columns:minmax(0,1fr)}
+  .bhead{display:none}
+  .brow .arrow{transform:rotate(90deg);justify-self:start}
+  .piece,.two-in{grid-template-columns:minmax(0,1fr)}
+}
+@media (pointer:coarse){ .cand .btn{min-height:44px} }
+body.capturing .adder, body.capturing .cand, body.capturing .chips li button, body.capturing .no-cap{display:none!important}
+body.capturing .card .tog[aria-pressed="false"], body.capturing .pick button[aria-pressed="false"]{display:none}
+@media print{
+  .adder,.cand,.chips li button,.no-cap,.ask{display:none!important}
+  .card .tog[aria-pressed="false"]{display:none}
+  .card .tog[aria-pressed="true"],.pick button[aria-pressed="true"]{background:none;color:var(--ink);border:.3mm solid #999}
+  .pick button[aria-pressed="false"]{display:none}
+  .ring{padding:1.5mm 2mm;border-radius:4mm}
+  .ring.r3{min-height:auto}
+  .me{width:8mm;height:8mm;font-size:8pt}
+  .card .ct{line-height:1.3}
+  .brow .cap-field{padding:.8mm 2mm}
+  .brow .say .cap-text{flex:1 1 30mm;min-height:6mm}
+  .chips li{background:none;border:.3mm solid #999}
+  .card{display:flex;flex-wrap:wrap;align-items:center;padding:1mm 2.5mm;gap:.5mm 3mm}
+  .card .ct{flex:1 1 100%}
+  .card .ct b{width:5mm;height:5mm}
+  .card .row{gap:1mm 2mm}
+  .card .row:last-child{flex:1 1 70mm}
+  .card .row .lab{font-size:8pt}
+  .card .cap-field{display:inline-block;flex:1 1 50mm;border:0;border-bottom:.3mm solid #999;border-radius:0;padding:0 1mm;min-height:5mm}
+  .card .tog{min-height:auto;padding:0 2mm;font-size:8.5pt}
+  .cards{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5mm}
+  .card .row:last-child{flex:1 1 100%}
+  .brow{gap:2mm}
+  .brow.eg{padding:1mm 2mm}
+  .block{gap:1.5mm}
+  .ring{gap:1mm}
+  .ring > .rh span{font-size:8pt}
+  .me{margin:0}
+  .pieces{gap:1.5mm;margin-top:2mm}
+  .piece{grid-template-columns:32mm minmax(0,1fr);gap:2mm}
+  .piece .pl small{display:inline;margin-left:1mm;font-size:7.5pt}
+  .pick button{padding:1mm 2mm;min-height:auto}
+  .two-in{gap:3mm}
+  .two-in label{font-size:9pt;gap:1mm}
+  #joined + div{display:none}
+  .step .cap-field{min-height:8mm}
+  .chain{margin-bottom:1mm}
+  .chain span{padding:0 2mm;font-size:8.5pt}
+  .tip{padding:1.5mm 3mm}
+  .sentence{line-height:2}
+  .sentence .cap-text{min-width:28mm;text-align:center}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">🧭 마음여행 길잡이</a><span aria-hidden="true">›</span><span>마음돌봄 · 16차시</span></div>
+    <h1>도움을 청하는 용기</h1>
+    <p class="sub">나의 도움망 · 도움을 청하는 말</p>
+    <p class="q">탐구질문 · 혼자 해결하기 어려울 때 나는 누구에게 어떻게 도움을 요청할 수 있을까?</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="parts" role="tablist" aria-label="활동지 고르기">
+    <button type="button" role="tab" data-part="part-1"><span class="pn">1</span><span>나의 도움망<small>혼자 안 될 때, 다음으로 갈 곳</small></span></button>
+    <button type="button" role="tab" data-part="part-2"><span class="pn">2</span><span>도움을 청하는 말<small>사실·느낌·요청 세 조각</small></span></button>
+  </div>
+
+  <div class="sheet">
+    <div class="who">
+      <label>이름 <input id="name" type="text" autocomplete="off" placeholder="쓰지 않아도 돼요"></label>
+    </div>
+
+    <!-- 활동지 1 -->
+    <section class="part" id="part-1" role="tabpanel">
+      <h2 class="part-title print-only">학습 활동지 1 · 나의 도움망</h2>
+      <p class="part-sub">혼자 안 될 때, 다음으로 갈 곳</p>
+
+      <section class="step">
+        <h2><span class="num">1</span>도움을 청하지 못하게 막는 생각을 알아차리는 말로 바꾸어 봅시다.</h2>
+        <div class="block" id="block">
+          <div class="bhead"><span>막는 생각</span><span>→</span><span>알아차리는 말</span></div>
+          <div class="brow eg"><span>‘약해 보일까 봐’</span><span class="arrow">→</span><span>‘나는 약하다’는 생각이 있구나</span></div>
+        </div>
+        <div class="cand no-cap" id="block-cand"><span>다른 막는 생각 예:</span></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">2</span>나의 도움망을 세 겹으로 채워 봅시다.</h2>
+        <div class="ring r3" data-ring="c">
+          <div class="rh"><b>③ 학교 밖</b><span>상담 전화, 상담 기관</span></div>
+          <ul class="chips"></ul>
+          <div class="adder"><input class="field" type="text" maxlength="40" aria-label="학교 밖 도움 쓰기" placeholder="학교 밖 도움 쓰기"><button class="btn small primary" type="button">넣기</button></div>
+          <div class="cand"><span>선생님이 알려 준 곳:</span></div>
+          <div class="ring r2" data-ring="b">
+            <div class="rh"><b>② 학교 안</b><span>상담 선생님(Wee 클래스), 보건 선생님</span></div>
+            <ul class="chips"></ul>
+            <div class="adder"><input class="field" type="text" maxlength="40" aria-label="학교 안 도움 쓰기" placeholder="학교 안 도움 쓰기"><button class="btn small primary" type="button">넣기</button></div>
+            <div class="ring r1" data-ring="a">
+              <div class="rh"><b>① 가까운 어른</b><span>가족, 담임</span></div>
+              <ul class="chips"></ul>
+              <div class="adder"><input class="field" type="text" maxlength="40" aria-label="가까운 어른 쓰기" placeholder="가까운 어른 쓰기"><button class="btn small primary" type="button">넣기</button></div>
+              <span class="me" aria-hidden="true">나</span>
+            </div>
+          </div>
+        </div>
+        <p class="note">가족에게 말하기 어려우면 다른 가까운 어른을 써도 돼요.</p>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">3</span>상황 카드를 읽고 어느 겹에 연결하면 좋을지 골라 봅시다.</h2>
+        <div class="cards" id="cards"></div>
+        <p class="note">같은 고민이라도 상대에 따라 도움이 달라질 수 있어요. 한 사람이 도와줄 수 없을 때 다음으로 갈 겹도 함께 골라도 돼요.</p>
+      </section>
+      <p class="credit print-only">『마음여행』 16차시 연계 웹 활동지 · 마음여행 길잡이 plusiam.github.io/mind-compass/16/</p>
+    </section>
+
+    <!-- 활동지 2 -->
+    <section class="part" id="part-2" role="tabpanel" hidden>
+      <h2 class="part-title print-only">학습 활동지 2 · 도움을 청하는 말</h2>
+      <p class="part-sub">사실·느낌·요청 세 조각</p>
+
+      <section class="step">
+        <h2><span class="num">1</span>상황 카드를 하나 골라 세 조각으로 문장을 만들어 봅시다.</h2>
+        <div class="pick" id="pick"></div>
+        <div class="pieces">
+          <div class="piece"><span class="pl">① 사실<small>무슨 일이 있었는지</small></span><input class="field" id="fact" type="text" maxlength="80" aria-label="사실"></div>
+          <div class="piece"><span class="pl">② 느낌<small>지금 나는 어떤지</small></span><input class="field" id="feel" type="text" maxlength="80" aria-label="느낌"></div>
+          <div class="piece"><span class="pl">③ 요청<small>무엇이 필요한지</small></span><input class="field" id="req" type="text" maxlength="80" aria-label="요청"></div>
+        </div>
+        <p class="tip">사실은 판단이 아니라 사실로 적어요. (예) ‘나는 소심해’(판단) → ‘발표 전날 잠을 못 잤어’(사실)</p>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">2</span>세 조각을 이어 한 문장으로 써 봅시다.</h2>
+        <textarea class="field" id="joined" aria-label="세 조각을 이은 문장"></textarea>
+        <div class="no-cap" style="margin-top:6px"><button class="btn" type="button" id="join">⤵ 세 조각 이어 붙이기</button></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">3</span>상대가 “지금은 어려워”라고 말한다면 어떻게 할까요?</h2>
+        <div class="two-in">
+          <label>다음으로 갈 사람이나 곳<input class="field" id="next" type="text" maxlength="40" list="net-dl"></label>
+          <label>그때 나에게 해 줄 말<input class="field" id="self" type="text" maxlength="60"></label>
+        </div>
+        <datalist id="net-dl"></datalist>
+        <p class="note">처음 말한 사람이 도와주지 못한 것은 도움을 청한 내 잘못이 아니에요.</p>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">4</span>마음돌봄에서 배운 것을 한 줄로 이어 봅시다.</h2>
+        <div class="chain"><span>갈고리</span><i>→</i><span>알아차리는 말</span><i>→</i><span>닻</span><small>14차시</small><i>→</i><span>감정 4분면</span><i>→</i><span>나만의 방법</span><small>15차시</small><i>→</i><span>도움</span><small>16차시</small></div>
+        <textarea class="field" id="chain" aria-label="마음돌봄에서 배운 것을 한 줄로"></textarea>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">5</span>나의 돌봄 다짐</h2>
+        <p class="sentence">나는 마음이 힘들 때 (<input id="vow-do" type="text" autocomplete="off" aria-label="해 볼 것">)을(를) 해 보고, 그래도 어려우면 (<input id="vow-who" type="text" autocomplete="off" aria-label="도움을 청할 사람" list="net-dl">)에게 도움을 청하겠다.</p>
+        <label class="note" style="display:grid;gap:4px">짝의 다짐에서 따라 하고 싶은 것 한 가지<input class="field" id="peer" type="text" maxlength="60"></label>
+        <p class="note">다짐은 짝과 나눠요.</p>
+      </section>
+      <p class="credit print-only">『마음여행』 16차시 연계 웹 활동지 · 마음여행 길잡이 plusiam.github.io/mind-compass/16/#part-2</p>
+    </section>
+
+    <p class="ask">지금 정말 힘들면 <b>선생님이나 가까운 어른에게 바로 말해 주세요.</b> 이 화면에 쓴 내용은 선생님께 전달되지 않아요.</p>
+  </div>
+
+  <details class="teacher sheet">
+    <summary>선생님 안내</summary>
+    <ul>
+      <li>『마음여행』 16차시의 학습 활동지 「나의 도움망」과 「도움을 청하는 말」을 웹으로 옮겼습니다. 상황 카드는 모두 가상입니다. 웹 활동지 없이도 수업은 그대로 됩니다.</li>
+      <li>실제 고민을 말하도록 요구하지 않고 가상 사례로만 다룹니다. 도입의 ‘마음이 보내는 신호’(잠, 입맛, 집중, 몸의 긴장) 표시는 공용 기기에 남지 않도록 이 화면에 넣지 않았습니다. 종이로 본인만 보게 하고 개수를 세거나 비교하지 않습니다.</li>
+      <li>학교 밖 자원은 실제 이용할 수 있는 곳으로 수업 전에 확인해 제시합니다. 원고 기준: 청소년상담 1388(성평등가족부, 365일 24시간, 전화 외에 문자·카카오톡·온라인 상담), 자살예방상담전화 109(보건복지부, 24시간). 최신 정보는 수업 전에 다시 확인합니다. 우리 학교 상담 선생님 성함·상담실 위치·신청 방법, 보건실 위치·이용 시간은 칠판이나 PPT로 안내합니다.</li>
+      <li>역할극은 목소리 크기나 태도를 평가하지 않고 세 조각이 들어갔는지로만 확인합니다. 상대가 지금 들을 수 없을 때 다음 사람에게 가는 장면까지 연습합니다.</li>
+      <li>다짐은 전체 앞에서 발표시키지 않고 짝과 나눕니다. 도움을 청하는 정도를 학생의 성격이나 용기 수준으로 평가하지 않습니다.</li>
+      <li>이 차시는 실제 도움 요청이 있을 수 있으므로 담임·상담 선생님과 미리 협의하고 수업 뒤 개별 확인 시간을 확보합니다. 1차시 출발 카드 ④번에 ‘아직 어렵다’로 표시했거나 비워 둔 학생은 오늘 도움망 한 칸을 개별로 함께 채웁니다. 이 화면은 상담을 대신하지 않습니다.</li>
+      <li>17차시 ‘다음 성장 약속 카드’ ③번은 오늘 만든 도움망에서 고르므로, 활동지 1은 인쇄해 17차시까지 보관하게 합니다(공용 기기의 웹 기록은 지워질 수 있음).</li>
+      <li>출처: 스트레스 시대에 의미있는 일 실천하기(이강욱·김완두·김윤희 옮김). 세계보건기구. / 최지욱 외(2023). 초등학생용 정신건강 리터러시(교사용 지도서). 한국교육환경보호원.</li>
+    </ul>
+  </details>
+  <p class="credit">『마음여행』 16차시 연계 · 집필 여한기(대구남부초) · 웹 구현 여한기<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
+</main>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="saved" id="saved">쓰는 내용은 이 기기에만 저장돼요</span>
+    <div class="acts">
+      <button class="btn primary" id="btn-print" type="button">🖨️ 인쇄·PDF</button>
+      <button class="btn" id="btn-img" type="button">🖼️ 그림으로 저장</button>
+      <button class="btn" id="btn-clear" type="button">🧹 내 기록 지우기</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/vendor/html2canvas.min.js"></script>
+<script src="../assets/js/common.js?v=20261104c"></script>
+<script>
+(function(){
+  'use strict';
+  var KEY = 'l16-help-net';
+  var CARDS = [
+    '준호는 모둠 활동에서 자기 의견이 자꾸 무시되는 것 같다.',
+    '서연이는 요즘 밤에 잠이 잘 오지 않는다.',
+    '민재는 단체 대화방에서 자기만 빼고 이야기가 오간 것 같다.',
+    '하은이는 시험이 다가오면 배가 자주 아프다.',
+    '도윤이는 친한 친구와 다툰 뒤 며칠째 말을 하지 않고 있다.',
+    '지우는 요즘 아무것도 하기 싫고 마음이 무겁다.'
+  ];
+  var NUMS = ['①','②','③','④','⑤','⑥'];
+  var RINGS = [{k:'a', n:'①', t:'가까운 어른'},{k:'b', n:'②', t:'학교 안'},{k:'c', n:'③', t:'학교 밖'}];
+  var BLOCK_CAND = ['괜히 걱정 끼칠까 봐','말해도 소용없을 거야'];
+  var OUT_CAND = ['청소년상담 1388','자살예방상담전화 109'];
+
+  function blank(){
+    return {name:'', block:[{t:'',w:''},{t:'',w:''}], net:{a:[],b:[],c:[]}, cards:CARDS.map(function(){ return {rings:[], why:''}; }),
+            pick:-1, fact:'', feel:'', req:'', joined:'', next:'', self:'', chain:'', vowDo:'', vowWho:'', peer:''};
+  }
+  var st = Object.assign(blank(), MC.load(KEY));
+  if(!st.net || typeof st.net !== 'object') st.net = {a:[],b:[],c:[]};
+  RINGS.forEach(function(r){ if(!Array.isArray(st.net[r.k])) st.net[r.k] = []; });
+  if(!Array.isArray(st.cards) || st.cards.length !== CARDS.length) st.cards = blank().cards;
+  if(!Array.isArray(st.block) || !st.block.length) st.block = blank().block;
+  function persist(){ if(MC.save(KEY, st)) MC.markSaved(); renderNetList(); }
+
+  /* 1. 막는 생각 → 알아차리는 말 */
+  var block = document.getElementById('block');
+  st.block.forEach(function(row, i){
+    var d = document.createElement('div'); d.className = 'brow';
+    d.innerHTML = '<input class="field" type="text" maxlength="40" aria-label="막는 생각 ' + (i+1) + '" placeholder="막는 생각">' +
+      '<span class="arrow">→</span>' +
+      '<span class="say">‘<input class="field" type="text" maxlength="40" aria-label="알아차리는 말 ' + (i+1) + '">’는 생각이 있구나</span>';
+    var ins = d.querySelectorAll('input');
+    ins[0].value = row.t; ins[1].value = row.w;
+    ins[0].addEventListener('input', function(){ row.t = ins[0].value; persist(); });
+    ins[1].addEventListener('input', function(){ row.w = ins[1].value; persist(); });
+    block.appendChild(d);
+  });
+  var bc = document.getElementById('block-cand');
+  BLOCK_CAND.forEach(function(t){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = '‘' + t + '’';
+    b.addEventListener('click', function(){
+      var rows = block.querySelectorAll('.brow:not(.eg)');
+      for(var i = 0; i < rows.length; i++){
+        var inp = rows[i].querySelector('input');
+        if(!inp.value){ inp.value = '‘' + t + '’'; st.block[i].t = inp.value; persist(); rows[i].querySelectorAll('input')[1].focus(); return; }
+      }
+      MC.toast('빈 줄이 없어요. 하나를 지우고 넣어 주세요.');
+    });
+    bc.appendChild(b);
+  });
+
+  /* 2. 도움망 세 겹 */
+  Array.prototype.forEach.call(document.querySelectorAll('.ring'), function(ring){
+    var k = ring.getAttribute('data-ring');
+    var ul = ring.querySelector(':scope > .chips'), adder = ring.querySelector(':scope > .adder');
+    MC.chipList(ul, st.net[k], persist);
+    MC.bindAdder(adder, st.net[k], ul, persist);
+    var cand = ring.querySelector(':scope > .cand');
+    if(cand && k === 'c'){
+      OUT_CAND.forEach(function(t){
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = t;
+        b.addEventListener('click', function(){ if(st.net.c.indexOf(t) < 0){ st.net.c.push(t); persist(); MC.chipList(ul, st.net.c, persist); } });
+        cand.appendChild(b);
+      });
+    }
+  });
+  function renderNetList(){
+    var all = [];
+    RINGS.forEach(function(r){ st.net[r.k].forEach(function(v){ if(all.indexOf(v) < 0) all.push(v); }); });
+    document.getElementById('net-dl').innerHTML = all.map(function(v){ return '<option value="' + v.replace(/"/g,'&quot;') + '">'; }).join('');
+  }
+
+  /* 3. 상황 카드 → 겹 연결 */
+  var cards = document.getElementById('cards');
+  CARDS.forEach(function(t, i){
+    var c = st.cards[i];
+    var d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = '<div class="ct"><b>' + NUMS[i] + '</b><span></span></div><div class="row"><span class="lab">연결할 겹</span></div><div class="row"><span class="lab">그렇게 생각한 까닭</span><input class="field why" type="text" maxlength="80" aria-label="' + NUMS[i] + ' 카드 까닭"></div>';
+    d.querySelector('.ct span').textContent = t;
+    var row = d.querySelectorAll('.row')[0];
+    RINGS.forEach(function(r){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tog'; b.textContent = r.n + ' ' + r.t;
+      b.setAttribute('aria-pressed', c.rings.indexOf(r.k) > -1);
+      b.addEventListener('click', function(){
+        var k = c.rings.indexOf(r.k);
+        if(k > -1) c.rings.splice(k, 1); else c.rings.push(r.k);
+        b.setAttribute('aria-pressed', k === -1); persist();
+      });
+      row.appendChild(b);
+    });
+    var why = d.querySelector('.why'); why.value = c.why;
+    why.addEventListener('input', function(){ c.why = why.value; persist(); });
+    cards.appendChild(d);
+  });
+
+  /* 활동지 2: 상황 하나 고르기 */
+  var pick = document.getElementById('pick');
+  CARDS.forEach(function(t, i){
+    var b = document.createElement('button'); b.type = 'button';
+    b.textContent = NUMS[i] + ' ' + t;
+    b.setAttribute('aria-pressed', st.pick === i);
+    b.addEventListener('click', function(){
+      st.pick = (st.pick === i) ? -1 : i; persist();
+      Array.prototype.forEach.call(pick.children, function(x, k){ x.setAttribute('aria-pressed', st.pick === k); });
+    });
+    pick.appendChild(b);
+  });
+
+  [['name','name'],['fact','fact'],['feel','feel'],['req','req'],['joined','joined'],['next','next'],['self','self'],['chain','chain'],['vow-do','vowDo'],['vow-who','vowWho'],['peer','peer']].forEach(function(p){
+    var el = document.getElementById(p[0]);
+    el.value = st[p[1]] || '';
+    el.addEventListener('input', function(){ st[p[1]] = el.value; persist(); });
+  });
+  document.getElementById('join').addEventListener('click', function(){
+    var parts = [st.fact, st.feel, st.req].map(function(s){ return (s || '').trim(); }).filter(Boolean);
+    if(parts.length < 3) MC.toast('세 조각 가운데 빈 칸이 있어요. 빠지면 상대가 무엇을 도와야 할지 알기 어려워요.');
+    if(!parts.length) return;
+    var el = document.getElementById('joined'); el.value = parts.join(' '); st.joined = el.value; persist(); el.focus();
+  });
+
+  document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('btn-img').addEventListener('click', function(){
+    var p = MC.currentPart();
+    MC.saveImage(document.querySelector('.sheet'), p && p.id === 'part-2' ? '16차시_도움을청하는말' : '16차시_나의도움망');
+  });
+  document.getElementById('btn-clear').addEventListener('click', function(){
+    MC.confirmClear(KEY, function(){ location.reload(); });
+  });
+
+  renderNetList();
+})();
+</script>
+</body>
+</html>
