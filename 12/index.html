@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko" data-path="12/" data-pdf="../pdf/lesson-12.pdf">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12차시 우리는 연결되어 있어 · 웹학습지 | 마음여행 길잡이</title>
+<meta name="description" content="『마음여행』 12차시 원고 활동지를 옮긴 웹학습지 · 빈 학습지 인쇄(A4·A3)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104e">
+<link rel="stylesheet" href="../assets/css/sheet.css?v=20261104e">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">🧭 마음여행 길잡이</a><span aria-hidden="true">›</span><span>책임 · 12차시</span></div>
+    <h1>우리는 연결되어 있어</h1>
+    <p class="sub">원고 활동지 웹학습지</p>
+    <p class="q">탐구질문 · 서로 원하는 것이 다를 때 어떻게 함께 문제를 해결할 수 있을까?</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="parts" role="tablist" aria-label="활동지 고르기" id="parts-tabs"></div>
+  <div class="sheet">
+    <div class="who" hidden>
+      <label>이름 <input id="name" type="text" autocomplete="off" placeholder="쓰지 않아도 돼요"></label>
+    </div>
+    <div id="parts-root"></div>
+  </div>
+
+  <details class="teacher sheet">
+    <summary>선생님 안내</summary>
+    <ul>
+      <li>『마음여행』 12차시 원고의 학습 활동지를 옮겼습니다. 웹학습지 없이도 수업은 그대로 됩니다.</li>
+      <li>「🖨️ 인쇄·PDF」에서 <b>빈 학습지</b>(손글씨용, 수업 전 복사)와 <b>쓴 내용 그대로</b>(보관·제출)를 고르고, 용지는 A4 세로 또는 A3 세로(크게)로 뽑습니다. 아이패드·크롬북처럼 용지 설정이 안 맞으면 미리 만든 빈 학습지 PDF를 씁니다.</li>
+      <li>모둠 활동지는 연구회가 만든 원본 그대로입니다. 모둠 활동지 1(우리 놀이터 회의록)은 A3 가로·모둠당 1장으로 공동 그림(도화지) 옆에 두고 씁니다. 모둠 활동지 2의 카드 4장은 점선을 따라 잘라 회의록 ②에 붙이고, 아래 띠는 잘라 각자 공책에 붙입니다(원고).</li>
+      <li>A3 프린터가 없으면 인쇄 창에서 용지를 A4, 배율을 「용지에 맞춤」으로 바꿉니다.</li>
+      <li>학생이 쓴 내용은 이 기기에만 저장되고 서버로 보내지 않습니다. 공용 기기에서는 다 쓴 뒤 「내 기록 지우기」를 누르게 합니다.</li>
+    </ul>
+  </details>
+  <p class="credit">『마음여행』 12차시 연계 · 집필 신지수 · 웹 구현 여한기<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
+</main>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="saved" id="saved">이 활동지는 종이로 써요 · 빈 학습지 인쇄</span>
+    <div class="acts">
+      <button class="btn primary" id="btn-print" type="button">🖨️ 인쇄·PDF</button>
+      <button class="btn" id="btn-img" type="button" hidden>🖼️ 그림으로 저장</button>
+      <button class="btn" id="btn-clear" type="button" hidden>🧹 내 기록 지우기</button>
+    </div>
+  </div>
+</div>
+
+<script>window.SHEET = {"key":"l12-sheet","lesson":12,"blankOnly":true,"onlyNote":"📋 모둠 활동지는 종이로 써요. 「🖨️ 인쇄·PDF」에서 모둠 활동지 1은 A3 가로, 모둠 활동지 2는 A4 세로로 뽑아요(원고).","parts":[{"id":"part-1","label":"모둠 활동지 1 · 우리 놀이터 회의록","sub":"A3 가로 · 모둠당 1장","paper":"A3L","board":true,"title":"","blocks":[{"t":"board","src":"../assets/boards/board-12-1.png","alt":"12차시 모둠 활동지 1 우리 놀이터 회의록(A3 가로)","note":"A3 가로 · 모둠당 1장 · 공동 그림(도화지) 옆에 두고 기록"}]},{"id":"part-2","label":"모둠 활동지 2 · 같은 그림, 다른 마음","sub":"카드 4장 · 나의 돌아보기 띠 · A4 세로","board":true,"title":"","blocks":[{"t":"board","src":"../assets/boards/board-12-2.png","alt":"12차시 모둠 활동지 2 같은 그림 다른 마음 카드와 나의 돌아보기 띠(A4 세로)","note":"A4 세로 · 모둠당 1장 · 카드는 잘라 회의록 ②에, 띠는 잘라 공책에"}]}]};</script>
+<script src="../assets/vendor/html2canvas.min.js"></script>
+<script src="../assets/vendor/qrcode.js"></script>
+<script src="../assets/js/common.js?v=20261104e"></script>
+<script src="../assets/js/sheet.js?v=20261104e"></script>
+</body>
+</html>
