@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ko" data-path="1/">
+<html lang="ko" data-path="1/" data-pdf="../pdf/lesson-01.pdf">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1차시 마음 여행, 함께 출발 · 출발 카드 | 마음여행 길잡이</title>
 <meta name="description" content="『마음여행』 1차시 연계 웹 활동지: 이 상황에는 어떤 힘이 필요할까?, 마음여행 출발 카드">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="../assets/css/base.css?v=20261104d">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104e">
 <style>
 .powers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .power{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#fffefb;text-align:center;font-weight:800;line-height:1.4}
@@ -46,6 +46,10 @@ body.capturing .card-acts, body.capturing .private{display:none!important}
 body.capturing .scene .tog[aria-pressed="false"]{display:none}
 @media print{
   .card-acts,.private{display:none!important}
+  /* 빈 학습지: 힘 고르기 단추 대신 번호를 적을 빈칸 */
+  html.blank #part-1 .tog{display:none!important}
+  html.blank #part-1 .row > .lab::after{content:"  ________"}
+  html.blank .light .opts button{display:inline-flex!important}
   .powers{gap:2mm}
   .power{padding:1.5mm}
   .scene{display:flex;flex-wrap:wrap;align-items:center;padding:1mm 2.5mm;gap:.5mm 3mm;margin-bottom:1.2mm}
@@ -194,7 +198,7 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
 
 <script src="../assets/vendor/html2canvas.min.js"></script>
 <script src="../assets/vendor/qrcode.js"></script>
-<script src="../assets/js/common.js?v=20261104d"></script>
+<script src="../assets/js/common.js?v=20261104e"></script>
 <script>
 (function(){
   'use strict';
@@ -307,7 +311,7 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
   document.getElementById('c-clear').addEventListener('click', function(){ clearCard(); MC.toast('출발 카드를 지웠어요'); });
 
   /* 아래 단추 줄 */
-  document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('btn-print').addEventListener('click', function(){ MC.printMenu(); });
   document.getElementById('btn-img').addEventListener('click', function(){
     var p = MC.currentPart();
     MC.saveImage(document.querySelector('.sheet'), p && p.id === 'part-2' ? '1차시_마음여행_출발카드' : '1차시_어떤힘이필요할까');
