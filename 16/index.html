@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ko" data-path="16/">
+<html lang="ko" data-path="16/" data-pdf="../pdf/lesson-16.pdf">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>16차시 도움을 청하는 용기 · 나의 도움망 | 마음여행 길잡이</title>
 <meta name="description" content="『마음여행』 16차시 연계 웹 활동지: 나의 도움망, 도움을 청하는 말(사실·느낌·요청)">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="../assets/css/base.css?v=20261104d">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104e">
 <style>
 /* 막는 생각 → 알아차리는 말 */
 .block{display:grid;gap:8px}
@@ -75,6 +75,10 @@ body.capturing .card .tog[aria-pressed="false"], body.capturing .pick button[ari
   .card .tog[aria-pressed="false"]{display:none}
   .card .tog[aria-pressed="true"],.pick button[aria-pressed="true"]{background:none;color:var(--ink);border:.3mm solid #999}
   .pick button[aria-pressed="false"]{display:none}
+  /* 빈 학습지: 상황 카드 목록 대신 번호 칸 */
+  html.blank .pick{display:none!important}
+  html.blank .pieces::before{content:"고른 상황 카드 번호: (     )";font-weight:700;font-size:9pt}
+  html.blank .card .tog{display:inline-flex!important}
   .ring{padding:1.5mm 2mm;border-radius:4mm}
   .ring.r3{min-height:auto}
   .me{width:8mm;height:8mm;font-size:8pt}
@@ -258,7 +262,7 @@ body.capturing .card .tog[aria-pressed="false"], body.capturing .pick button[ari
 
 <script src="../assets/vendor/html2canvas.min.js"></script>
 <script src="../assets/vendor/qrcode.js"></script>
-<script src="../assets/js/common.js?v=20261104d"></script>
+<script src="../assets/js/common.js?v=20261104e"></script>
 <script>
 (function(){
   'use strict';
@@ -383,7 +387,7 @@ body.capturing .card .tog[aria-pressed="false"], body.capturing .pick button[ari
     var el = document.getElementById('joined'); el.value = parts.join(' '); st.joined = el.value; persist(); el.focus();
   });
 
-  document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('btn-print').addEventListener('click', function(){ MC.printMenu(); });
   document.getElementById('btn-img').addEventListener('click', function(){
     var p = MC.currentPart();
     MC.saveImage(document.querySelector('.sheet'), p && p.id === 'part-2' ? '16차시_도움을청하는말' : '16차시_나의도움망');
