@@ -11,7 +11,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#1f6b78">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="assets/css/base.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/base.css?v=20261104e">
 <style>
 .hero{background:var(--brand);color:#fff;padding:26px 0 30px}
 .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:.86rem;font-weight:700}
@@ -55,6 +55,14 @@
 .tool .qb{flex:none;min-width:56px;min-height:48px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:800;font-size:.85rem}
 .tool .qb:hover{background:var(--soft)}
 .qr-all{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.tool .pdf-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1.5px dashed var(--line);border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--brand-ink)}
+.tool .pdf-link:hover{background:var(--soft)}
+.tool .more{font-size:.86rem;color:var(--muted)}
+.tool .more a{font-weight:700;color:#6b4800}
+.tool .more small{color:var(--muted)}
+.allpdf{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:#fffdf3;border:1.5px solid #e6d7a5;border-radius:var(--radius);padding:14px 16px;margin-top:12px}
+.allpdf b{display:block;font-size:1.02rem}
+.allpdf span{display:block;font-size:.9rem;color:var(--muted)}
 .tool .paper{font-size:.9rem;color:var(--muted);background:var(--soft);border-radius:10px;padding:8px 10px;text-align:center}
 
 .flow{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:12px;box-shadow:var(--shadow)}
@@ -101,8 +109,12 @@
     <div class="rule"><b>③ 상담을 대신하지 않아요</b><span>정답·점수가 없어요. 위기 징후는 학교 학생지원 체계로 연결해요.</span></div>
   </section>
 
+  <section class="allpdf" aria-label="빈 학습지 모음">
+    <div><b>📄 17차시 빈 학습지 한 번에 받기</b><span>원고 활동지를 손글씨용으로 모은 PDF(A4 · 모둠판 3장은 A3 가로, 26쪽). 아이패드·크롬북에서도 그대로 인쇄돼요.</span></div>
+    <a class="btn primary" href="pdf/mind-compass-blank-all.pdf" target="_blank" rel="noopener">전체 PDF 받기</a>
+  </section>
+
   <div class="filter" role="group" aria-label="영역 고르기" id="filter"><span class="lab">영역</span></div>
-  <div class="filter" style="margin-top:0"><button class="tog" type="button" id="only-web" aria-pressed="false">웹 활동지가 있는 차시만</button></div>
 
   <div id="list"></div>
 
@@ -115,12 +127,14 @@
         <li>활동지 1·2가 있는 차시는 위쪽 단추로 나눠 봐요. 주소 끝에 <code>#part-2</code>를 붙이면 활동지 2로 바로 열려요.</li>
       </ul></div>
       <div class="tip-c"><b>🖨️ 인쇄·저장</b><ul>
-        <li>「인쇄·PDF」는 지금 보이는 활동지를 A4 1쪽으로 뽑아요. 인쇄 창에서 「PDF로 저장」을 고르면 파일이 돼요.</li>
+        <li>각 활동지의 「🖨️ 인쇄·PDF」에서 <b>빈 학습지</b>(손글씨용)와 <b>쓴 내용 그대로</b>를 고르고, 용지는 A4 세로·A3 세로(크게), 모둠판은 A3 가로로 뽑아요. 인쇄 창에서 「PDF로 저장」을 고르면 파일이 돼요.</li>
+        <li>용지 설정이 안 맞는 기기(아이패드·일부 크롬북)는 카드의 「📄 빈 학습지 PDF」나 위의 전체 PDF를 써요.</li>
         <li>「그림으로 저장」은 PNG 파일로 내려받아요. 공용 기기의 다운로드 폴더에 남을 수 있으니 수업 뒤 지워요.</li>
       </ul></div>
       <div class="tip-c"><b>🔒 저장하지 않는 것</b><ul>
         <li>1차시 출발 카드: 인쇄·PDF·그림으로만 꺼내 봉투에 넣어요(17차시까지 비공개).</li>
         <li>14차시 「선생님께 드리는 쪽지」: 학생이 인쇄해 접어 드리거나 그림·PDF로 보여 드려요.</li>
+        <li>3차시(익명 약점 쓰기)와 12차시(모둠판)는 화면에 쓰지 않고 빈 학습지로 인쇄해요.</li>
       </ul></div>
       <div class="tip-c"><b>📱 QR로 학생 기기에서 열기</b><ul>
         <li>카드의 「QR」이나 각 활동지 아래쪽 「📱 QR」을 누르면 전자칠판에 큰 QR이 떠요. 학생은 태블릿·크롬북 카메라로 찍어 열어요.</li>
@@ -128,7 +142,7 @@
       </ul>
       <div class="qr-all"><button class="btn primary" type="button" id="qr-print">🖨️ QR 모음 인쇄·PDF</button><button class="btn" type="button" id="qr-home">📱 첫 화면 QR</button></div></div>
       <div class="tip-c"><b>🔗 함께 쓰는 기존 도구</b><ul>
-        <li>3·5·6·7·13차시의 기존 도구는 여한기가 2025~2026년에 만든 공개 자료로, 연구회 개발 자료는 아니에요.</li>
+        <li>3·5·6·7·13차시 카드 아래 「더 해 보기」는 여한기가 2025~2026년에 만든 공개 도구로, 원고 활동지도 연구회 개발 자료도 아니에요.</li>
         <li>새 창으로 열려요. 기존 도구도 학생 기록을 서버로 보내지 않아요.</li>
       </ul></div>
     </div>
@@ -146,7 +160,7 @@
 </div>
 
 <script src="assets/vendor/qrcode.js"></script>
-<script src="assets/js/common.js?v=20261104d"></script>
+<script src="assets/js/common.js?v=20261104e"></script>
 <script>
 (function(){
   'use strict';
@@ -179,25 +193,38 @@
     [16,'도움을 청하는 용기','혼자 해결하기 어려울 때 나는 누구에게 어떻게 도움을 요청할 수 있을까?',['도움 대상과 다음 도움 경로 찾기','사실·느낌·요청으로 도움 청하기 연습하기','나의 방법과 도움 요청을 잇는 다짐하기']],
     [17,'마음 여행을 돌아보며','나는 이번 마음 여행에서 무엇을 배우고 어떻게 달라졌으며, 어떻게 실천할 것인가?',['출발 카드와 활동 기록으로 배움 돌아보기','키워드 사전과 마음여행 성장 지도 만들기','나눌 내용을 고르고 다음 실천 약속 정하기']]
   ];
-  // 원고 맞춤 웹 활동지(새로 만듦)
+  // 차시별 원고 활동지 웹학습지(17차시 모두)
   var NEW = {
-    1:{name:'이 상황에는 어떤 힘이 필요할까? · 마음여행 출발 카드', when:'② 생활 장면 활동과 ③ 출발 카드(인쇄해 봉투에 보관)'},
-    14:{name:'갈고리를 찾아라! · 닻을 내려보기', when:'학습 활동지 1·2(출구 카드), 선생님께 드리는 쪽지'},
-    15:{name:'감정 4분면 · 나만의 방법', when:'정리 단계의 학습 활동지 1(모둠 방법 지도는 종이로)'},
+    1:{name:'이 상황에는 어떤 힘이 필요할까? · 마음여행 출발 카드', when:'출발 카드는 저장하지 않고 인쇄해 봉투에 보관'},
+    2:{name:'일상생활 속 영웅 되기', when:'학습 활동지 1'},
+    3:{name:'우리 반 고민상담소', when:'익명 활동이라 화면에 쓰지 않고 빈 학습지 인쇄만', paperOnly:true},
+    4:{name:'당근마켓(학생용) · 판매자·구매내역', when:'학습 활동지 1(학생용)·3'},
+    5:{name:'감정 신호 알아보기 · 감정 와이파이', when:'학습 활동지 1·2'},
+    6:{name:'생각에 따른 행동과 결과 알아보기', when:'학습 활동지 1'},
+    7:{name:'마음 상점 아이템 만들기', when:'학습 활동지 1'},
+    8:{name:'듣고 확인하는 공감 대화', when:'활동지 8-1'},
+    9:{name:'공 하나를 함께 쓰는 4STEP', when:'활동지 9-1'},
+    10:{name:'개인에서 모둠으로 의견 모으기', when:'활동지 10-1'},
+    11:{name:'오해 추적과 생각 멈춤', when:'학습 활동지 1(문장을 눌러 밑줄·물결선)'},
+    12:{name:'우리 놀이터 회의록 · 같은 그림, 다른 마음', when:'모둠 활동지 1(A3 가로)·2(A4) — 종이로 쓰는 모둠판', paperOnly:true},
+    13:{name:'공정한 약속 만들기', when:'학습 활동지 1'},
+    14:{name:'갈고리를 찾아라! · 닻을 내려보기', when:'학습 활동지 1·2, 선생님께 드리는 쪽지 · 모둠판 A3는 PDF에'},
+    15:{name:'감정 4분면 · 나만의 방법', when:'학습 활동지 1 · 우리 모둠 방법 지도 A3는 PDF에'},
     16:{name:'나의 도움망 · 도움을 청하는 말', when:'학습 활동지 1·2(상황 카드는 가상)'},
     17:{name:'키워드 사전 · 성장 지도', when:'학습 활동지 1·2(갤러리 워크는 전시용 보기)'}
   };
-  // 함께 쓰면 좋은 기존 도구(여한기 개인 공개 자료, 연구회 개발 자료 아님)
+  // 더 해 보기: 함께 쓰면 좋은 기존 도구(여한기 개인 공개 자료, 연구회 개발 자료 아님, 원고 활동지 아님)
   var OLD = {
-    3:{name:'긍정 카드 메이커', url:'https://plusiam.github.io/maum-hub/positive-card-maker/', when:'확장: 친구에게 ‘괜찮아’의 말을 카드로 전하기'},
-    5:{name:'순간감정카드 메이커', url:'https://plusiam.github.io/emotion-card-maker/', when:'확장: 감정 이름과 상황을 카드로 쓰기(얼굴 사진은 넣지 않기)'},
-    6:{name:'ABC 생각바꾸기', url:'https://plusiam.github.io/abc-think/', when:'확장, 또는 바이브 코딩 환경이 없을 때 대체'},
-    7:{name:'나만의 마음 비법 만들기', url:'https://plusiam.github.io/my-mind-card/', when:'확장: ③ 나에게 맞는 방법과 사용할 상황 정하기'},
-    13:{name:'우리 반 차터(공동체 협약) 만들기', url:'https://plusiam.github.io/charter-builder/', when:'확장: 우리 반이 함께 지킬 약속 정리하기'}
+    3:{name:'긍정 카드 메이커', url:'https://plusiam.github.io/maum-hub/positive-card-maker/'},
+    5:{name:'순간감정카드 메이커', url:'https://plusiam.github.io/emotion-card-maker/'},
+    6:{name:'ABC 생각바꾸기', url:'https://plusiam.github.io/abc-think/'},
+    7:{name:'나만의 마음 비법 만들기', url:'https://plusiam.github.io/my-mind-card/'},
+    13:{name:'우리 반 차터(공동체 협약) 만들기', url:'https://plusiam.github.io/charter-builder/'}
   };
+  function pdfOf(n){ return 'pdf/lesson-' + (n < 10 ? '0' : '') + n + '.pdf'; }
 
   var areaOf = function(n){ for(var i = 0; i < AREAS.length; i++){ if(n >= AREAS[i].from && n <= AREAS[i].to) return AREAS[i]; } };
-  var curArea = '', onlyWeb = false;
+  var curArea = '';
 
   var filter = document.getElementById('filter');
   [{k:'', t:'전체'}].concat(AREAS).forEach(function(a){
@@ -205,8 +232,6 @@
     b.addEventListener('click', function(){ curArea = a.k; try{ history.replaceState(null, '', a.k ? '#' + a.k : location.pathname); }catch(e){} render(); });
     filter.appendChild(b);
   });
-  var ow = document.getElementById('only-web');
-  ow.addEventListener('click', function(){ onlyWeb = !onlyWeb; ow.setAttribute('aria-pressed', onlyWeb); render(); });
 
   function el(tag, cls, text){ var e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
 
@@ -217,18 +242,17 @@
     c.appendChild(el('p', 'iq', '탐구질문 · ' + l[2]));
     var ol = el('ol'); ['①','②','③'].forEach(function(m, i){ if(l[3][i]) ol.appendChild(el('li', '', m + ' ' + l[3][i])); }); c.appendChild(ol);
     var t = el('div', 'tool');
-    if(NEW[n]){
-      t.appendChild(el('span', 'kind new', '원고 맞춤 웹 활동지'));
-      t.appendChild(el('span', 'when', NEW[n].name + ' — ' + NEW[n].when));
-      var a = el('a', 'go new', '웹 활동지 열기 →'); a.href = n + '/';
-      t.appendChild(withQr(a, MC.BASE + n + '/', n + '차시 ' + l[1]));
-    } else if(OLD[n]){
-      t.appendChild(el('span', 'kind old', '함께 쓰면 좋은 기존 도구 · 여한기 공개 자료'));
-      t.appendChild(el('span', 'when', OLD[n].when));
-      var b = el('a', 'go old', OLD[n].name + ' ↗'); b.href = OLD[n].url; b.target = '_blank'; b.rel = 'noopener';
-      t.appendChild(withQr(b, OLD[n].url, n + '차시 · ' + OLD[n].name));
-    } else {
-      t.appendChild(el('p', 'paper', '📄 종이 활동지로 운영해요'));
+    t.appendChild(el('span', 'kind new', NEW[n].paperOnly ? '원고 활동지 · 빈 학습지 인쇄' : '원고 활동지 웹학습지'));
+    t.appendChild(el('span', 'when', NEW[n].name + ' — ' + NEW[n].when));
+    var a = el('a', 'go new', NEW[n].paperOnly ? '활동지 보기·인쇄 →' : '웹학습지 열기 →'); a.href = n + '/';
+    t.appendChild(withQr(a, MC.BASE + n + '/', n + '차시 ' + l[1]));
+    var pd = el('a', 'pdf-link', '📄 빈 학습지 PDF'); pd.href = pdfOf(n); pd.target = '_blank'; pd.rel = 'noopener'; t.appendChild(pd);
+    if(OLD[n]){
+      var m = el('p', 'more');
+      m.appendChild(document.createTextNode('더 해 보기 · '));
+      var b = el('a', '', OLD[n].name + ' ↗'); b.href = OLD[n].url; b.target = '_blank'; b.rel = 'noopener'; m.appendChild(b);
+      m.appendChild(el('small', '', ' (기존 공개 도구, 원고 활동지 아님)'));
+      t.appendChild(m);
     }
     c.appendChild(t);
     return c;
@@ -241,19 +265,10 @@
     r.appendChild(q); return r;
   }
 
-  /* QR 모음(A4): 첫 화면 + 원고 맞춤 활동지(활동지 2 포함) + 기존 도구 */
+  /* QR 모음(A4 1쪽): 첫 화면 + 17차시 웹학습지 */
   function qrSheet(){
     var items = [[MC.BASE, '마음여행 길잡이', '첫 화면']];
-    L.forEach(function(l){
-      var n = l[0];
-      if(NEW[n]){
-        var pn = NEW[n].name.split(' · ');
-        items.push([MC.BASE + n + '/', n + '차시 ' + l[1], n === 15 ? NEW[n].name : '활동지 1 ' + pn[0]]);
-        if(n !== 15) items.push([MC.BASE + n + '/#part-2', n + '차시 ' + l[1], '활동지 2 ' + (pn[1] || '')]);
-      } else if(OLD[n]){
-        items.push([OLD[n].url, n + '차시 · ' + OLD[n].name, '함께 쓰는 기존 도구']);
-      }
-    });
+    L.forEach(function(l){ items.push([MC.BASE + l[0] + '/', l[0] + '차시 ' + l[1], NEW[l[0]].name]); });
     var s = el('div', 'qr-sheet');
     s.appendChild(el('h2', '', '🧭 마음여행 길잡이 QR 모음'));
     s.appendChild(el('p', 'qs-sub', '태블릿·크롬북 카메라로 찍으면 바로 열려요. · plusiam.github.io/mind-compass/'));
@@ -276,7 +291,7 @@
     var shown = 0;
     AREAS.forEach(function(a){
       if(curArea && curArea !== a.k) return;
-      var items = L.filter(function(l){ return l[0] >= a.from && l[0] <= a.to && (!onlyWeb || NEW[l[0]] || OLD[l[0]]); });
+      var items = L.filter(function(l){ return l[0] >= a.from && l[0] <= a.to; });
       if(!items.length) return;
       var s = el('section', 'area'); s.setAttribute('aria-label', a.t);
       var h = el('div', 'area-h'); h.appendChild(el('h2', '', a.t)); h.appendChild(el('span', '', a.s)); s.appendChild(h);
