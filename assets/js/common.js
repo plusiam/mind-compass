@@ -80,15 +80,52 @@
     var solo = document.getElementById('solo-print'); if(solo) solo.remove();
   });
 
+  /* QR: 공개 주소를 학생 기기로 열게 한다. 외부 서비스 없이 qrcode.js(로컬)로 그린다 */
+  var BASE = 'https://plusiam.github.io/mind-compass/';
+  function pageUrl(){
+    var h = location.hash || '';
+    if(/^https?:$/.test(location.protocol) && location.host === 'plusiam.github.io') return location.origin + location.pathname + h;
+    return BASE + (document.documentElement.getAttribute('data-path') || '') + h;
+  }
+  function qrSvg(text){
+    if(typeof window.qrcode !== 'function') return '';
+    var q = window.qrcode(0, 'M'); q.addData(text); q.make();
+    return q.createSvgTag({cellSize:8, margin:2, scalable:true, alt:'QR 코드: ' + text});
+  }
+  var qrBox;
+  function showQr(url, title){
+    if(typeof window.qrcode !== 'function'){ toast('QR을 준비하지 못했어요.'); return; }
+    url = url || pageUrl(); title = title || document.title.split(' | ')[0];
+    if(!qrBox){
+      qrBox = document.createElement('div'); qrBox.className = 'qr-modal'; qrBox.setAttribute('role', 'dialog'); qrBox.setAttribute('aria-modal', 'true'); qrBox.setAttribute('aria-label', 'QR 코드');
+      qrBox.innerHTML = '<div class="qr-box"><b class="qr-t"></b><div class="qr-svg"></div><p class="qr-u"></p><p class="qr-h">태블릿·크롬북 카메라로 찍으면 이 화면이 열려요.</p><div class="qr-acts"><button type="button" class="btn" data-a="big">크게 보기</button><button type="button" class="btn" data-a="copy">주소 복사</button><button type="button" class="btn primary" data-a="close">닫기</button></div></div>';
+      document.body.appendChild(qrBox);
+      qrBox.addEventListener('click', function(e){
+        var a = e.target.getAttribute && e.target.getAttribute('data-a');
+        if(e.target === qrBox || a === 'close') hideQr();
+        else if(a === 'big') qrBox.classList.toggle('big');
+        else if(a === 'copy'){ var u = qrBox.getAttribute('data-url'); if(navigator.clipboard) navigator.clipboard.writeText(u).then(function(){ toast('주소를 복사했어요'); }, function(){ toast(u); }); else toast(u); }
+      });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && qrBox.classList.contains('open')) hideQr(); });
+    }
+    qrBox.setAttribute('data-url', url);
+    qrBox.querySelector('.qr-t').textContent = title;
+    qrBox.querySelector('.qr-svg').innerHTML = qrSvg(url);
+    qrBox.querySelector('.qr-u').textContent = url.replace(/^https:\/\//, '');
+    qrBox.classList.remove('big'); qrBox.classList.add('open');
+    qrBox.querySelector('[data-a="close"]').focus();
+  }
+  function hideQr(){ if(qrBox) qrBox.classList.remove('open'); }
+
   /* 한 부분만 인쇄·PDF(예: 선생님께 드리는 쪽지): 글자로 바꾼 복사본만 따로 두고 나머지는 숨긴다 */
-  function printOnly(el){
+  function printOnly(el, wide){
     var old = document.getElementById('solo-print'); if(old) old.remove();
     var undo = swapInputs(el);
     var copy = el.cloneNode(true);
     undo();
     copy.removeAttribute('id');
     Array.prototype.forEach.call(copy.querySelectorAll('input, textarea, select'), function(x){ x.remove(); });
-    var box = document.createElement('div'); box.id = 'solo-print'; box.appendChild(copy);
+    var box = document.createElement('div'); box.id = 'solo-print'; if(wide) box.className = 'wide'; box.appendChild(copy);
     document.body.appendChild(box);
     document.body.classList.add('print-solo');
     window.print();
@@ -129,6 +166,13 @@
       });
       acts.insertBefore(b, acts.firstChild);
       applySize(getSize());
+    }
+    if(acts && !document.getElementById('btn-qr') && typeof window.qrcode === 'function'){
+      var q = document.createElement('button');
+      q.type = 'button'; q.className = 'btn'; q.id = 'btn-qr'; q.textContent = '📱 QR';
+      q.setAttribute('aria-label', '이 화면 QR 코드 보기');
+      q.addEventListener('click', function(){ showQr(); });
+      acts.insertBefore(q, acts.firstChild);
     }
     initParts();
   });
@@ -174,5 +218,5 @@
     inp.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); add(); } });
   }
 
-  window.MC = { load:load, save:save, remove:remove, toast:toast, markSaved:markSaved, saveImage:saveImage, confirmClear:confirmClear, swapInputs:swapInputs, currentPart:currentPart, chipList:chipList, bindAdder:bindAdder, printOnly:printOnly };
+  window.MC = { load:load, save:save, remove:remove, toast:toast, markSaved:markSaved, saveImage:saveImage, confirmClear:confirmClear, swapInputs:swapInputs, currentPart:currentPart, chipList:chipList, bindAdder:bindAdder, printOnly:printOnly, showQr:showQr, qrSvg:qrSvg, pageUrl:pageUrl, BASE:BASE };
 })();
