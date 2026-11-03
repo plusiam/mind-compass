@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1차시 마음 여행, 함께 출발 · 출발 카드 | 마음여행 길잡이</title>
+<meta name="description" content="『마음여행』 1차시 연계 웹 활동지: 이 상황에는 어떤 힘이 필요할까?, 마음여행 출발 카드">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104c">
+<style>
+.powers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.power{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#fffefb;text-align:center;font-weight:800;line-height:1.4}
+.power b{display:block;color:var(--brand-ink);font-size:1.1rem}
+.scene{border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff;display:grid;gap:6px;margin-bottom:8px}
+.scene .st{display:flex;gap:8px}
+.scene .st b{flex:none;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .lab{font-size:.84rem;color:var(--muted);font-weight:700;min-width:6.5em}
+.row .grow{flex:1 1 14em;min-width:0}
+
+/* 마음 신호등 */
+.lights{display:grid;gap:8px}
+.light{border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff;display:grid;gap:8px}
+.light .lq{font-weight:700}
+.light .opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.light .opts button{min-height:48px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:700;padding:4px 6px}
+.light .opts button[aria-pressed="true"]{border:2.5px solid var(--ink);background:var(--soft)}
+.warn{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:.93rem;display:grid;gap:4px}
+.private{background:#fff7e8;border:1px solid #f0dcb0;border-radius:12px;padding:10px 12px;font-size:.93rem}
+.pick4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.pick4 button{min-height:56px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:700;line-height:1.35;padding:6px}
+.pick4 button[aria-pressed="true"]{border:2.5px solid var(--brand);background:var(--brand-soft)}
+.sentence{line-height:2.4;font-size:1.02rem}
+.sentence input{display:inline-block;width:min(13em,100%);border:0;border-bottom:2px solid var(--ink);background:transparent;padding:2px 4px;margin:0 2px;text-align:center}
+.sentence input:focus{outline:none;border-bottom-color:var(--brand);background:var(--brand-soft)}
+.eg{font-size:.88rem;color:var(--muted)}
+.card-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+@media (max-width:640px){
+  .powers,.pick4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:420px){
+  .light .opts{grid-template-columns:minmax(0,1fr)}
+}
+body.capturing .card-acts, body.capturing .private{display:none!important}
+body.capturing .scene .tog[aria-pressed="false"]{display:none}
+@media print{
+  .card-acts,.private{display:none!important}
+  .powers{gap:2mm}
+  .power{padding:1.5mm}
+  .scene{display:flex;flex-wrap:wrap;align-items:center;padding:1mm 2.5mm;gap:.5mm 3mm;margin-bottom:1.2mm}
+  .scene .st{flex:1 1 100%}
+  .scene .st b{width:5mm;height:5mm}
+  .scene .row:last-child{flex:1 1 60mm}
+  .row .lab{min-width:auto;font-size:8pt}
+  #part-1 .tog[aria-pressed="false"]{display:none}
+  .cap-text.grow{flex:1 1 40mm}
+  .powers .power b{display:inline;margin-right:1mm;font-size:10pt}
+  .scene .tog[aria-pressed="true"],.tog[aria-pressed="true"]{background:none;color:var(--ink);border:.3mm solid #999}
+  .tog{min-height:auto;padding:0 2mm}
+  .light{padding:1.5mm 2.5mm;gap:1mm}
+  .light .opts button{min-height:7mm;padding:0 1mm}
+  .light .opts button[aria-pressed="true"]{border:.6mm solid #333}
+  .pick4 button{min-height:9mm}
+  .warn{padding:1.5mm 3mm}
+  .sentence{line-height:2}
+  .sentence .cap-text{min-width:30mm;text-align:center}
+  .step .cap-field{min-height:10mm}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">🧭 마음여행 길잡이</a><span aria-hidden="true">›</span><span>마음여행 출발 · 1차시</span></div>
+    <h1>마음 여행, 함께 출발</h1>
+    <p class="sub">이 상황에는 어떤 힘이 필요할까? · 마음여행 출발 카드</p>
+    <p class="q">탐구질문 · 마음의 힘을 왜 배우며 무엇을 기르고 싶은가?</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="parts" role="tablist" aria-label="활동지 고르기">
+    <button type="button" role="tab" data-part="part-1"><span class="pn">1</span><span>이 상황에는 어떤 힘이 필요할까?<small>마음의 힘 네 가지 · 생활 장면</small></span></button>
+    <button type="button" role="tab" data-part="part-2"><span class="pn">2</span><span>마음여행 출발 카드<small>17차시에 다시 열어 볼 나의 출발점</small></span></button>
+  </div>
+
+  <div class="sheet">
+    <div class="who">
+      <label>이름 <input id="name" type="text" autocomplete="off" placeholder="쓰지 않아도 돼요"></label>
+    </div>
+
+    <!-- 활동지 1 -->
+    <section class="part" id="part-1" role="tabpanel">
+      <h2 class="part-title print-only">학습 활동지 1 · 마음 여행, 함께 출발</h2>
+      <p class="part-sub">이 상황에는 어떤 힘이 필요할까?</p>
+
+      <section class="step">
+        <h2><span class="num">1</span>마음의 힘 네 가지를 확인해 봅시다.</h2>
+        <div class="powers" id="powers"></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">2</span>아래 장면을 읽고, 어떤 마음의 힘이 필요한지 번호를 고르고 그렇게 생각한 까닭을 써 봅시다.</h2>
+        <div id="scenes"></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">3</span>한 장면에 두 가지 힘이 함께 필요할 수도 있습니다. 그런 장면을 하나 골라 까닭을 써 봅시다.</h2>
+        <div class="row"><span class="lab">고른 장면</span><span id="two-scene"></span></div>
+        <textarea class="field" id="two-why" aria-label="두 가지 힘이 함께 필요한 까닭" style="margin-top:6px"></textarea>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">4</span>우리 반에서 자주 있을 것 같은 순간을 모둠에서 하나 정해 적어 봅시다.</h2>
+        <div class="row"><span class="lab">우리 모둠이 정한 순간</span><input class="field grow" id="moment" type="text" maxlength="80"></div>
+        <div class="row" style="margin-top:6px"><span class="lab">그때 필요한 마음의 힘</span><span id="moment-power"></span></div>
+        <p class="note">실제 사건이 아니라 “있을 법한 순간”으로 적어요. 특정 친구가 떠오르는 말은 쓰지 않아요.</p>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">5</span>오늘 알게 된 ‘마음의 힘’을 한 줄로 써 봅시다.</h2>
+        <input class="field" id="oneline" type="text" maxlength="80" aria-label="마음 한 줄">
+        <p class="eg" style="margin-top:4px">(예) 마음의 힘은 성격이 아니라 연습하면 자라는 것 같다.</p>
+      </section>
+      <p class="credit print-only">『마음여행』 1차시 연계 웹 활동지 · 마음여행 길잡이 plusiam.github.io/mind-compass/1/</p>
+    </section>
+
+    <!-- 활동지 2: 출발 카드 (이 기기에 저장하지 않음) -->
+    <section class="part" id="part-2" role="tabpanel" hidden>
+      <h2 class="part-title print-only">학습 활동지 2 · 마음여행 출발 카드</h2>
+      <p class="part-sub">17차시에 다시 열어 볼 나의 출발점</p>
+      <p class="private">🔒 출발 카드는 <b>이 기기에 저장되지 않아요.</b> 다 쓰면 <b>인쇄해서 접어 봉투에 넣어요.</b> 화면을 닫거나 새로 고치면 지워져요.</p>
+
+      <div class="warn" style="margin-top:12px">
+        <span>※ 친구와 비교하지 않으며, 접어서 봉투에 넣어 두었다가 17차시에 그대로 돌려받습니다.</span>
+        <span>※ 🔴 표시가 많아도 괜찮습니다. 앞으로 배울 것이 많다는 뜻입니다.</span>
+      </div>
+
+      <section class="step">
+        <h2><span class="num">1</span>마음 신호등 – 지금의 나에게 가장 가까운 곳에 표시해 봅시다.</h2>
+        <div class="lights" id="lights"></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">2</span>이번 마음 여행에서 가장 기르고 싶은 힘 하나에 ○ 해 봅시다.</h2>
+        <div class="pick4" id="want"></div>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">3</span>그 힘을 고른 까닭을 써 봅시다.</h2>
+        <textarea class="field" id="c-why" aria-label="그 힘을 고른 까닭"></textarea>
+      </section>
+
+      <section class="step">
+        <h2><span class="num">4</span>나의 출발 문장을 완성해 봅시다.</h2>
+        <p class="sentence">나는 이번 마음여행에서 (<input id="c-power" type="text" autocomplete="off" aria-label="기르고 싶은 힘">) 힘을 기르고 싶다. 그래서 (<input id="c-do" type="text" autocomplete="off" aria-label="해 볼 것">)을(를) 해 보겠다.</p>
+        <p class="eg">예) 나는 ‘마음 돌보기’ 힘을 기르고 싶다. 그래서 마음이 무거운 날 한 사람에게라도 말해 보겠다.</p>
+      </section>
+
+      <div class="card-acts">
+        <button class="btn primary" type="button" id="c-print">🖨️ 출발 카드 인쇄·PDF</button>
+        <button class="btn" type="button" id="c-img">🖼️ 출발 카드 그림으로 저장</button>
+        <button class="btn" type="button" id="c-clear">출발 카드 지우기</button>
+      </div>
+      <p class="credit print-only">『마음여행』 1차시 연계 웹 활동지 · 마음여행 길잡이 plusiam.github.io/mind-compass/1/#part-2</p>
+    </section>
+  </div>
+
+  <details class="teacher sheet">
+    <summary>선생님 안내</summary>
+    <ul>
+      <li>『마음여행』 1차시의 학습 활동지 1(이 상황에는 어떤 힘이 필요할까?)과 2(마음여행 출발 카드)를 웹으로 옮겼습니다. 생활 장면 카드·마음의 힘 카드(학습 활동지 3)는 종이로 씁니다. 웹 활동지 없이도 수업은 그대로 됩니다.</li>
+      <li>어느 힘이 정답인지 판정하지 않고 “어느 부분을 보고 그렇게 생각했는지”를 되묻습니다. 개념을 외우게 하지 않고 생활 장면과 짝지어 다룹니다. 우리 반의 실제 사건이나 특정 학생이 떠오르는 말은 쓰지 않기로 먼저 약속합니다.</li>
+      <li><b>출발 카드는 이 기기에 저장하지 않습니다.</b> 학생이 인쇄(또는 PDF·그림)로 꺼내 접어 봉투에 넣고, 교사가 17차시까지 보관합니다. 그림·PDF 파일은 공용 기기의 다운로드 폴더에 남을 수 있으니 받은 뒤 지우게 합니다. 인쇄가 어려운 교실은 종이 활동지 2를 그대로 씁니다.</li>
+      <li>마음 신호등은 검사가 아니라 출발점 표시입니다. 점수를 세거나 비교하지 않고, 🔴이 많은 것은 배울 것이 많다는 뜻으로 안내합니다. 친구와 바꾸어 보거나 발표하지 않습니다.</li>
+      <li>④ “마음이 힘들 때 도움을 청할 사람이 떠오른다”에 🔴로 표시한 학생도 그 표시만으로 위기 학생으로 판단하지 않습니다. 수업 뒤 조용히 안부를 확인하고 16차시에서 도움을 청할 사람을 함께 찾습니다. 위기 징후가 보이면 학교의 학생지원 체계·전문기관 연계 절차에 바로 따릅니다.</li>
+      <li>출처: 최지욱 외(2023). 초등학생용 정신건강 리터러시(교사용 지도서). 한국교육환경보호원. 학습 활동지 1·2 — 대구마음교육연구회 제작.</li>
+    </ul>
+  </details>
+  <p class="credit">『마음여행』 1차시 연계 · 집필 한소연(대구사수초) · 웹 구현 여한기<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
+</main>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="saved" id="saved">쓰는 내용은 이 기기에만 저장돼요</span>
+    <div class="acts">
+      <button class="btn primary" id="btn-print" type="button">🖨️ 인쇄·PDF</button>
+      <button class="btn" id="btn-img" type="button">🖼️ 그림으로 저장</button>
+      <button class="btn" id="btn-clear" type="button">🧹 내 기록 지우기</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/vendor/html2canvas.min.js"></script>
+<script src="../assets/js/common.js?v=20261104c"></script>
+<script>
+(function(){
+  'use strict';
+  var KEY = 'l1-start';   // 활동지 1만 저장. 출발 카드(활동지 2)는 저장하지 않음
+  var POWERS = ['마음 알아차리고 다루기','마음 주고받기','함께 살아가기','마음 돌보기'];
+  var NUMS = ['①','②','③','④'];
+  var SCENES = [
+    '민수는 시험은 잘 봤는데, 게임에서 지자 리모컨을 던졌다.',
+    '지아는 인사를 했는데 친구가 그냥 지나가자 ‘나를 싫어하나 봐’ 하고 며칠 동안 말을 걸지 않았다.',
+    '4모둠은 의견이 갈리자, 목소리가 큰 사람 말대로 정해 버렸다.',
+    '서준이는 요즘 마음이 무거운데 아무에게도 말하지 않았다.'
+  ];
+  var LIGHTS = [
+    '나는 지금 내 기분이 어떤지 말로 설명할 수 있다.',
+    '화가 나거나 속상할 때 나에게 맞는 방법을 알고 있다.',
+    '생각이 다른 친구와 이야기로 풀어 본 적이 있다.',
+    '마음이 힘들 때 도움을 청할 사람이 떠오른다.'
+  ];
+  var LV = ['🟢 그런 편이다','🟡 반반이다','🔴 아직 어렵다'];
+
+  function blank(){ return {name:'', scenes:SCENES.map(function(){ return {p:[], why:''}; }), twoScene:-1, twoWhy:'', moment:'', momentP:[], oneline:''}; }
+  var st = Object.assign(blank(), MC.load(KEY));
+  if(!Array.isArray(st.scenes) || st.scenes.length !== SCENES.length) st.scenes = blank().scenes;
+  if(!Array.isArray(st.momentP)) st.momentP = [];
+  function persist(){ if(MC.save(KEY, st)) MC.markSaved(); }
+
+  function toggles(box, list, onChange, single){
+    POWERS.forEach(function(p, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tog';
+      b.textContent = NUMS[i] + ' ' + p; b.setAttribute('aria-pressed', list.indexOf(i) > -1);
+      b.addEventListener('click', function(){
+        var k = list.indexOf(i);
+        if(single){ list.length = 0; if(k < 0) list.push(i); }
+        else if(k > -1) list.splice(k, 1); else list.push(i);
+        Array.prototype.forEach.call(box.querySelectorAll('.tog'), function(x, j){ x.setAttribute('aria-pressed', list.indexOf(j) > -1); });
+        onChange();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  /* 활동지 1 */
+  var pw = document.getElementById('powers');
+  POWERS.forEach(function(p, i){ var d = document.createElement('div'); d.className = 'power'; d.innerHTML = '<b>' + NUMS[i] + '</b>'; d.appendChild(document.createTextNode(p)); pw.appendChild(d); });
+
+  var sc = document.getElementById('scenes');
+  SCENES.forEach(function(t, i){
+    var s = st.scenes[i];
+    var d = document.createElement('div'); d.className = 'scene';
+    d.innerHTML = '<div class="st"><b>' + NUMS[i] + '</b><span></span></div><div class="row"><span class="lab">필요한 힘</span><span class="tg"></span></div><div class="row"><span class="lab">그렇게 생각한 까닭</span><input class="field grow" type="text" maxlength="80" aria-label="' + NUMS[i] + ' 장면 까닭"></div>';
+    d.querySelector('.st span').textContent = t;
+    var tg = d.querySelector('.tg'); tg.className = 'row'; toggles(tg, s.p, persist, false);
+    var inp = d.querySelector('input'); inp.value = s.why; inp.addEventListener('input', function(){ s.why = inp.value; persist(); });
+    sc.appendChild(d);
+  });
+
+  var two = document.getElementById('two-scene'); two.className = 'row';
+  SCENES.forEach(function(t, i){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'tog'; b.textContent = NUMS[i] + ' 장면';
+    b.setAttribute('aria-pressed', st.twoScene === i);
+    b.addEventListener('click', function(){ st.twoScene = (st.twoScene === i) ? -1 : i; persist(); Array.prototype.forEach.call(two.children, function(x, j){ x.setAttribute('aria-pressed', st.twoScene === j); }); });
+    two.appendChild(b);
+  });
+  var mp = document.getElementById('moment-power'); mp.className = 'row'; toggles(mp, st.momentP, persist, false);
+
+  [['name','name'],['two-why','twoWhy'],['moment','moment'],['oneline','oneline']].forEach(function(p){
+    var el = document.getElementById(p[0]); el.value = st[p[1]] || '';
+    el.addEventListener('input', function(){ st[p[1]] = el.value; persist(); });
+  });
+
+  /* 활동지 2: 출발 카드 — 메모리에만 둠 */
+  var card = {lights:[-1,-1,-1,-1], want:-1};
+  var dirty = false;
+  var lw = document.getElementById('lights');
+  LIGHTS.forEach(function(q, i){
+    var d = document.createElement('div'); d.className = 'light';
+    d.innerHTML = '<span class="lq">' + NUMS[i] + ' </span><div class="opts"></div>';
+    d.querySelector('.lq').appendChild(document.createTextNode(q));
+    var o = d.querySelector('.opts');
+    LV.forEach(function(l, k){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = l; b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', NUMS[i] + ' ' + l);
+      b.addEventListener('click', function(){ card.lights[i] = (card.lights[i] === k) ? -1 : k; dirty = true; Array.prototype.forEach.call(o.children, function(x, j){ x.setAttribute('aria-pressed', card.lights[i] === j); }); });
+      o.appendChild(b);
+    });
+    lw.appendChild(d);
+  });
+  var wantBox = document.getElementById('want');
+  POWERS.forEach(function(p, i){
+    var b = document.createElement('button'); b.type = 'button'; b.innerHTML = NUMS[i] + '<br>'; b.appendChild(document.createTextNode(p)); b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function(){
+      card.want = (card.want === i) ? -1 : i; dirty = true;
+      Array.prototype.forEach.call(wantBox.children, function(x, j){ x.setAttribute('aria-pressed', card.want === j); });
+      var cp = document.getElementById('c-power'); if(card.want > -1 && !cp.value) cp.value = '‘' + p + '’';
+    });
+    wantBox.appendChild(b);
+  });
+  ['c-why','c-power','c-do'].forEach(function(id){ document.getElementById(id).addEventListener('input', function(){ dirty = true; }); });
+  window.addEventListener('beforeunload', function(e){ if(dirty){ e.preventDefault(); e.returnValue = ''; } });
+
+  function clearCard(){
+    card.lights = [-1,-1,-1,-1]; card.want = -1; dirty = false;
+    Array.prototype.forEach.call(document.querySelectorAll('#lights button, #want button'), function(x){ x.setAttribute('aria-pressed', 'false'); });
+    ['c-why','c-power','c-do'].forEach(function(id){ document.getElementById(id).value = ''; });
+  }
+  document.getElementById('c-print').addEventListener('click', function(){ window.print(); dirty = false; });
+  document.getElementById('c-img').addEventListener('click', function(){
+    MC.saveImage(document.querySelector('.sheet'), '1차시_마음여행_출발카드', null, '출발 카드를 저장했어요. 선생님께 드린 뒤 이 기기에서 파일을 지워 주세요.'); dirty = false;
+  });
+  document.getElementById('c-clear').addEventListener('click', function(){ clearCard(); MC.toast('출발 카드를 지웠어요'); });
+
+  /* 아래 단추 줄 */
+  document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('btn-img').addEventListener('click', function(){
+    var p = MC.currentPart();
+    MC.saveImage(document.querySelector('.sheet'), p && p.id === 'part-2' ? '1차시_마음여행_출발카드' : '1차시_어떤힘이필요할까');
+  });
+  document.getElementById('btn-clear').addEventListener('click', function(){
+    MC.confirmClear(KEY, function(){ dirty = false; location.reload(); });
+  });
+})();
+</script>
+</body>
+</html>
