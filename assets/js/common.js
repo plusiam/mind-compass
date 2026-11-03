@@ -5,11 +5,16 @@
 (function(){
   'use strict';
   var PREFIX = 'mc:v1:';
+  /* 빈 학습지(손글씨용) 화면: 주소에 ?blank=1 이 있으면 저장된 기록을 불러오지도, 저장하지도 않는다 */
+  var BLANK = /[?&]blank=1/.test(location.search) || window.MC_BLANK === true;
+  if(BLANK) document.documentElement.classList.add('blank');
 
   function load(key){
+    if(BLANK) return {};
     try{ return JSON.parse(localStorage.getItem(PREFIX+key)) || {}; }catch(e){ return {}; }
   }
   function save(key, data){
+    if(BLANK) return false;
     try{ localStorage.setItem(PREFIX+key, JSON.stringify(data)); return true; }catch(e){ return false; }
   }
   function remove(key){
@@ -73,12 +78,86 @@
     return function(){ swaps.forEach(function(p){ p[1].remove(); p[0].style.display = ''; }); };
   }
   var printUndo = null;
-  window.addEventListener('beforeprint', function(){ if(!printUndo) printUndo = swapInputs(document.body); });
+  window.addEventListener('beforeprint', function(){ if(!printUndo && !BLANK) printUndo = swapInputs(document.body); });
   window.addEventListener('afterprint', function(){
     if(printUndo){ printUndo(); printUndo = null; }
     document.body.classList.remove('print-solo');
     var solo = document.getElementById('solo-print'); if(solo) solo.remove();
   });
+
+  /* 용지: A4 세로(기본) / A3 세로(1.41배 크게) / A3 가로·A4 가로(모둠판). 인쇄 직전에 @page를 넣고 인쇄 뒤 지운다 */
+  var PAPERS = {
+    A4P:{t:'A4 세로', css:'@page{size:A4 portrait;margin:12mm}'},
+    A3P:{t:'A3 세로 (크게)', css:'@page{size:A3 portrait;margin:14mm} @media print{body{zoom:1.414}}'},
+    A3L:{t:'A3 가로 (모둠판)', css:'@page{size:A3 landscape;margin:8mm}'},
+    A4L:{t:'A4 가로 (모둠판을 A4에)', css:'@page{size:A4 landscape;margin:6mm}'}
+  };
+  function setPaper(doc, key){
+    var old = doc.getElementById('mc-paper'); if(old) old.remove();
+    if(!key || key === 'A4P') return;
+    var s = doc.createElement('style'); s.id = 'mc-paper'; s.textContent = PAPERS[key].css; doc.head.appendChild(s);
+    doc.documentElement.setAttribute('data-paper', key);
+  }
+  function clearPaper(doc){ var old = doc.getElementById('mc-paper'); if(old) old.remove(); doc.documentElement.removeAttribute('data-paper'); }
+  window.addEventListener('afterprint', function(){ if(!BLANK) clearPaper(document); });
+
+  /* 인쇄 고르기 창: 무엇을(빈 학습지 / 쓴 내용) · 용지 · 미리 만든 PDF */
+  var pmBox;
+  function printMenu(){
+    var part = currentPart();
+    var isBoard = !!(part && part.getAttribute('data-paper') === 'A3L');
+    var pdf = document.documentElement.getAttribute('data-pdf');
+    if(!pmBox){
+      pmBox = document.createElement('div'); pmBox.className = 'qr-modal pm'; pmBox.setAttribute('role', 'dialog'); pmBox.setAttribute('aria-modal', 'true'); pmBox.setAttribute('aria-label', '인쇄·PDF');
+      pmBox.innerHTML = '<div class="qr-box pm-box"><b class="qr-t">🖨️ 인쇄·PDF</b>' +
+        '<fieldset><legend>무엇을 뽑을까요?</legend><label><input type="radio" name="pm-what" value="blank"> 빈 학습지 <small>손글씨용 · 수업 전 복사</small></label><label><input type="radio" name="pm-what" value="filled"> 쓴 내용 그대로 <small>보관·제출용</small></label></fieldset>' +
+        '<fieldset><legend>용지</legend><div class="pm-papers"></div></fieldset>' +
+        '<p class="pm-note">인쇄 창의 「대상」에서 「PDF로 저장」을 고르면 PDF 파일이 돼요. A3 프린터가 없으면 인쇄 창에서 용지를 A4로, 배율을 「용지에 맞춤」으로 바꾸세요(글자가 작아져요).</p>' +
+        '<p class="pm-pdf"></p>' +
+        '<div class="qr-acts"><button type="button" class="btn primary" data-a="go">인쇄하기</button><button type="button" class="btn" data-a="close">닫기</button></div></div>';
+      document.body.appendChild(pmBox);
+      pmBox.addEventListener('click', function(e){
+        var a = e.target.getAttribute && e.target.getAttribute('data-a');
+        if(e.target === pmBox || a === 'close') pmBox.classList.remove('open');
+        else if(a === 'go'){
+          var what = (pmBox.querySelector('input[name="pm-what"]:checked') || {}).value || 'filled';
+          var paper = (pmBox.querySelector('input[name="pm-paper"]:checked') || {}).value || 'A4P';
+          pmBox.classList.remove('open');
+          doPrint(what, paper);
+        }
+      });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && pmBox.classList.contains('open')) pmBox.classList.remove('open'); });
+    }
+    var papers = isBoard ? ['A3L','A4L'] : ['A4P','A3P'];
+    pmBox.querySelector('.pm-papers').innerHTML = papers.map(function(k, i){ return '<label><input type="radio" name="pm-paper" value="' + k + '"' + (i === 0 ? ' checked' : '') + '> ' + PAPERS[k].t + '</label>'; }).join('');
+    var onlyBlank = document.documentElement.hasAttribute('data-blank-only') || isBoard;
+    var radios = pmBox.querySelectorAll('input[name="pm-what"]');
+    radios[0].checked = onlyBlank || BLANK; radios[1].checked = !(onlyBlank || BLANK); radios[1].disabled = onlyBlank;
+    radios[1].parentNode.style.display = onlyBlank ? 'none' : '';
+    var pp = pmBox.querySelector('.pm-pdf');
+    pp.innerHTML = pdf ? '📄 미리 만든 빈 학습지 PDF: <a href="' + pdf + '" target="_blank" rel="noopener">내려받기</a> <small>(아이패드·크롬북처럼 용지 설정이 안 맞을 때)</small>' : '';
+    pmBox.classList.add('open');
+    pmBox.querySelector('[data-a="go"]').focus();
+  }
+  function doPrint(what, paper){
+    if(what === 'blank' && !BLANK){
+      // 같은 화면을 빈 학습지로 숨긴 틀에 열어 그 틀만 인쇄한다(쓴 내용은 그대로 남음)
+      var old = document.getElementById('mc-blank-frame'); if(old) old.remove();
+      var f = document.createElement('iframe'); f.id = 'mc-blank-frame'; f.setAttribute('aria-hidden', 'true');
+      f.style.cssText = 'position:fixed;right:0;bottom:0;width:900px;height:1200px;border:0;opacity:0;pointer-events:none;z-index:-1';
+      f.src = location.pathname + '?blank=1' + location.hash;
+      f.addEventListener('load', function(){
+        try{
+          var w = f.contentWindow, d = f.contentDocument;
+          setTimeout(function(){ setPaper(d, paper); w.focus(); w.print(); }, 300);
+        }catch(e){ toast('빈 학습지를 열지 못했어요. 미리 만든 PDF를 써 주세요.'); }
+      });
+      document.body.appendChild(f);
+      return;
+    }
+    setPaper(document, paper);
+    window.print();
+  }
 
   /* QR: 공개 주소를 학생 기기로 열게 한다. 외부 서비스 없이 qrcode.js(로컬)로 그린다 */
   var BASE = 'https://plusiam.github.io/mind-compass/';
@@ -155,6 +234,7 @@
   document.addEventListener('focusout', function(){ setTimeout(function(){ var a = document.activeElement; if(!a || !a.matches('input[type="text"],textarea')) document.body.classList.remove('typing'); }, 50); });
 
   document.addEventListener('DOMContentLoaded', function(){
+    if(BLANK){ var sv = document.getElementById('saved'); if(sv) sv.textContent = '빈 학습지 화면 · 쓴 내용은 저장되지 않아요'; }
     var acts = document.querySelector('.bar .acts');
     if(acts && !document.getElementById('btn-size')){
       var b = document.createElement('button');
@@ -218,5 +298,5 @@
     inp.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); add(); } });
   }
 
-  window.MC = { load:load, save:save, remove:remove, toast:toast, markSaved:markSaved, saveImage:saveImage, confirmClear:confirmClear, swapInputs:swapInputs, currentPart:currentPart, chipList:chipList, bindAdder:bindAdder, printOnly:printOnly, showQr:showQr, qrSvg:qrSvg, pageUrl:pageUrl, BASE:BASE };
+  window.MC = { load:load, save:save, remove:remove, toast:toast, markSaved:markSaved, saveImage:saveImage, confirmClear:confirmClear, swapInputs:swapInputs, currentPart:currentPart, chipList:chipList, bindAdder:bindAdder, printOnly:printOnly, showQr:showQr, qrSvg:qrSvg, pageUrl:pageUrl, BASE:BASE, printMenu:printMenu, doPrint:doPrint, setPaper:setPaper, BLANK:BLANK };
 })();
