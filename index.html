@@ -57,6 +57,8 @@
 .tool .go.new:hover{background:var(--brand-ink)}
 .tool .go.old{background:#fff;border:1.5px solid #e0c98f;color:#6b4800}
 .tool .go.old:hover{background:#fff8e6}
+.tool .go.extra{background:var(--brand-soft);border:1.5px solid var(--brand);color:var(--brand-ink)}
+.tool .go.extra:hover{background:#d3e8ea}
 .tool .row2{display:flex;gap:6px}
 .tool .row2 .go{flex:1}
 .tool .qb{flex:none;min-width:56px;min-height:48px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:800;font-size:.85rem}
@@ -261,6 +263,10 @@
     7:{name:'나만의 마음 비법 만들기', url:'https://plusiam.github.io/my-mind-card/'},
     13:{name:'우리 반 차터(공동체 협약) 만들기', url:'https://plusiam.github.io/charter-builder/'}
   };
+  // 같은 차시의 원고 자료 입력 보조(원고 활동지는 아니지만 원고 교사 참고자료를 그대로 옴김)
+  var EXTRA = {
+    6:{name:'🎮 활동 3 · 게임 프롬프트 만들기 →', url:'6/prompt.html', note:'원고 예시 프롬프트 빈칸 채우기 · 복사해 캔바 AI에'}
+  };
   function pdfOf(n){ return 'pdf/lesson-' + (n < 10 ? '0' : '') + n + '.pdf'; }
 
   var areaOf = function(n){ for(var i = 0; i < AREAS.length; i++){ if(n >= AREAS[i].from && n <= AREAS[i].to) return AREAS[i]; } };
@@ -287,6 +293,11 @@
     var a = el('a', 'go new', NEW[n].paperOnly ? '빈 학습지 보기·인쇄 →' : '웹 학습지 열기 →'); a.href = n + '/';
     t.appendChild(withQr(a, MC.BASE + n + '/', n + '차시 ' + l[1]));
     var pd = el('a', 'pdf-link', '📄 빈 학습지 PDF'); pd.href = pdfOf(n); pd.target = '_blank'; pd.rel = 'noopener'; t.appendChild(pd);
+    if(EXTRA[n]){
+      var x = el('a', 'go extra', EXTRA[n].name); x.href = EXTRA[n].url;
+      t.appendChild(withQr(x, MC.BASE + EXTRA[n].url, n + '차시 게임 프롬프트 만들기'));
+      t.appendChild(el('span', 'when', EXTRA[n].note));
+    }
     if(OLD[n]){
       var m = el('p', 'more');
       m.appendChild(document.createTextNode('더 해 보기 · '));
