@@ -116,3 +116,8 @@ body.capturing .ws-checks .tog[aria-pressed="false"]{opacity:.9}
   .ws-inline > .field,.ws-inline > textarea{flex:1 1 12rem}
 }
 @media screen{ .mark-story .ms{padding:4px 0} }
+
+/* 빈 학습지 인쇄만 하는 차시(3·12): 읽기 전용 칸은 쓸 수 있는 칸처럼 보이지 않게 */
+.part textarea[readonly],.part input[readonly]{resize:none;cursor:default;background:#fafaf8}
+.part textarea[readonly]:focus,.part input[readonly]:focus{box-shadow:none;border-color:var(--line)}
+@media print{.part textarea[readonly],.part input[readonly]{background:#fff}}
