@@ -48,7 +48,7 @@
       b.sents.forEach(function(s, i){
         var k = b.k + '.' + i, sp = el('span', 'ms', s);
         if(!ONLY){ sp.setAttribute('role', 'button'); sp.tabIndex = 0; }
-        var paint = function(){ sp.classList.toggle('u', st[k] === 1); sp.classList.toggle('w', st[k] === 2); };
+        var paint = function(){ sp.classList.toggle('u', st[k] === 1); sp.classList.toggle('w', st[k] === 2); if(!ONLY) sp.setAttribute('aria-label', s + (st[k] === 1 ? ' (밑줄 그음)' : st[k] === 2 ? ' (물결선 그음)' : '')); };
         var cyc = function(){ if(ONLY) return; st[k] = ((st[k] || 0) + 1) % 3; paint(); persist(); };
         sp.addEventListener('click', cyc); sp.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); cyc(); } });
         paint(); p.appendChild(sp); p.appendChild(document.createTextNode(' '));

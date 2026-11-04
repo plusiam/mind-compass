@@ -237,3 +237,24 @@ body.typing .bar{display:none}
   .pf-qr{flex:0 0 14mm;line-height:0}
   .pf-qr svg{width:14mm;height:14mm;display:block}
 }
+
+/* 화면 전용 보강(2026-11-04 검토 반영): 인쇄 모양에는 영향 없음 */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+html.modal-open{overflow:hidden}
+.lbl-s{display:none}
+@media screen{
+  .who input{border-color:#8c949b}
+  .field:focus,.sentence input:focus,.add input:focus{outline:3px solid var(--brand);outline-offset:1px}
+  main .btn,main .tog,.top .crumb a{min-height:44px!important}
+  .top .crumb a{display:inline-flex;align-items:center;padding:0 8px;margin-left:-8px;border-radius:10px}
+  .quick .btn,.from .btn,.cand .btn{font-size:.9rem;padding:6px 12px}
+}
+@media screen and (max-width:560px){
+  .bar{padding:6px 0}
+  .bar .wrap{gap:4px}
+  .saved{width:100%;text-align:center;font-size:.78rem}
+  .bar .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(5.2rem,1fr));gap:6px;width:100%}
+  .bar .btn{padding:4px 6px;font-size:.84rem;gap:3px;white-space:nowrap;min-height:44px}
+  .lbl-l{display:none}
+  .lbl-s{display:inline}
+}

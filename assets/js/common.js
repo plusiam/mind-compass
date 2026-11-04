@@ -188,7 +188,7 @@
       c.classList.add('pf');
       c.innerHTML = '';
       var t = document.createElement('span'); t.className = 'pf-t'; t.textContent = text; c.appendChild(t);
-      if(!noQr){ var q = document.createElement('span'); q.className = 'pf-qr'; q.innerHTML = qrSvg(url); c.appendChild(q); }
+      if(!noQr){ var q = document.createElement('span'); q.className = 'pf-qr'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = qrSvg(url); c.appendChild(q); }
     });
   }
 
@@ -212,10 +212,10 @@
     qrBox.querySelector('.qr-t').textContent = title;
     qrBox.querySelector('.qr-svg').innerHTML = qrSvg(url);
     qrBox.querySelector('.qr-u').textContent = url.replace(/^https:\/\//, '');
-    qrBox.classList.remove('big'); qrBox.classList.add('open');
+    qrBox.classList.remove('big'); qrBox.classList.add('open'); document.documentElement.classList.add('modal-open');
     qrBox.querySelector('[data-a="close"]').focus();
   }
-  function hideQr(){ if(qrBox) qrBox.classList.remove('open'); }
+  function hideQr(){ if(qrBox) qrBox.classList.remove('open'); document.documentElement.classList.remove('modal-open'); }
 
   /* 한 부분만 인쇄·PDF(예: 선생님께 드리는 쪽지): 글자로 바꾼 복사본만 따로 두고 나머지는 숨긴다 */
   function printOnly(el, wide){
@@ -277,7 +277,35 @@
     }
     initParts();
     printFooters();
+    a11y();
+    shortLabels();
   });
+
+  /* 화면낭독기: 문항 번호(원)와 본문이 붙어 읽히지 않게, 활동지 단추는 이름과 설명을 나눠 읽게 */
+  function a11y(){
+    Array.prototype.forEach.call(document.querySelectorAll('h2 > .num, h3 > .num'), function(s){
+      var h = s.parentNode; s.setAttribute('aria-hidden', 'true');
+      if(h.hasAttribute('aria-label') || h.querySelector('input,textarea,button,select')) return;
+      var c = h.cloneNode(true); var x = c.querySelector('.num'); if(x) x.remove();
+      h.setAttribute('aria-label', '문항 ' + s.textContent.trim() + '. ' + c.textContent.trim());
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.parts button'), function(b){
+      var pn = b.querySelector('.pn'); if(pn) pn.setAttribute('aria-hidden', 'true');
+      var c = b.cloneNode(true); var y = c.querySelector('.pn'); if(y) y.remove();
+      Array.prototype.forEach.call(c.querySelectorAll('small'), function(sm){ sm.insertBefore(document.createTextNode(', '), sm.firstChild); });
+      var t = c.textContent.replace(/\s+/g, ' ').trim(); if(t) b.setAttribute('aria-label', t);
+    });
+  }
+  /* 휴대폰처럼 좁은 화면에서 아래 단추 이름을 짧게(화면 전용) */
+  function shortLabels(){
+    [['btn-img', '🖼️', '그림으로 저장', '그림 저장'], ['btn-clear', '🧹', '내 기록 지우기', '기록 지우기']].forEach(function(x){
+      var b = document.getElementById(x[0]); if(!b || b.textContent.indexOf(x[2]) < 0) return;
+      b.textContent = x[1] + ' ';
+      var l = document.createElement('span'); l.className = 'lbl-l'; l.textContent = x[2]; b.appendChild(l);
+      var s = document.createElement('span'); s.className = 'lbl-s'; s.textContent = x[3]; b.appendChild(s);
+      b.setAttribute('aria-label', x[2]);
+    });
+  }
 
   /* 활동지 1·2 나눠 보기: .parts 단추(data-part) ↔ .part(id). 주소 #part-2 로 바로 열 수 있음 */
   function initParts(){

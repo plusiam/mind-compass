@@ -109,3 +109,10 @@ body.capturing .ws-checks .tog[aria-pressed="false"]{opacity:.9}
   html.blank .market-h input{border-bottom:.3mm solid #fff!important;background:transparent!important}
   html.blank .ws-table td .field,html.blank .ws-table td textarea{border:0!important}
 }
+
+/* 화면 전용 보강(2026-11-04): 좁은 화면에서 이름표 옆 입력칸이 찌그러지지 않게 줄바꿈 */
+@media screen and (max-width:640px){
+  .ws-inline{flex-wrap:wrap}
+  .ws-inline > .field,.ws-inline > textarea{flex:1 1 12rem}
+}
+@media screen{ .mark-story .ms{padding:4px 0} }
