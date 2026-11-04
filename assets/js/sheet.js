@@ -209,7 +209,9 @@
   document.getElementById('btn-print').addEventListener('click', function(){ MC.printMenu(); });
   document.getElementById('btn-img').addEventListener('click', function(){
     var p = MC.currentPart() || document.querySelector('.part');
-    MC.saveImage(document.querySelector('.sheet'), S.lesson + '차시_' + (p ? p.id : 'sheet'));
+    var ttl = (document.querySelector('.top h1') || {}).textContent || '';
+    var pi = p ? Array.prototype.indexOf.call(document.querySelectorAll('.part'), p) : 0;
+    MC.saveImage(document.querySelector('.sheet'), S.lesson + '차시_' + ttl.replace(/[^0-9A-Za-z가-힣]/g, '') + (S.parts.length > 1 ? '_활동지' + (pi + 1) : ''));
   });
   document.getElementById('btn-clear').addEventListener('click', function(){ MC.confirmClear(S.key, function(){ location.reload(); }); });
   var nm = document.getElementById('name'); if(nm){ nm.value = st.name || ''; nm.addEventListener('input', function(){ st.name = nm.value; persist(); }); }

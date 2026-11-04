@@ -32,7 +32,7 @@
     toastEl.textContent = msg;
     toastEl.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 1800);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, msg.length > 30 ? 4500 : 1800);
   }
 
   function markSaved(){
@@ -46,16 +46,28 @@
   function saveImage(el, filename, extraClass, doneMsg){
     if(typeof window.html2canvas !== 'function'){ toast('그림 저장을 준비하지 못했어요. 인쇄·PDF를 써 주세요.'); return; }
     var undo = swapInputs(el);
-    function restore(){ undo(); document.body.classList.remove('capturing'); if(extraClass) document.body.classList.remove(extraClass); }
+    /* 맨 아래 한 줄: 무슨 활동인지(주소·QR·제작자 없이) */
+    var lab = null, n = parseInt(document.documentElement.getAttribute('data-path') || '', 10), h1 = document.querySelector('.top h1');
+    if(n && h1 && !extraClass){ lab = document.createElement('p'); lab.className = 'cap-label'; lab.textContent = '『마음여행』 ' + n + '차시 · ' + h1.textContent.trim(); el.appendChild(lab); }
+    function restore(){ undo(); if(lab) lab.remove(); document.body.classList.remove('capturing'); if(extraClass) document.body.classList.remove(extraClass); }
     document.body.classList.add('capturing');
     if(extraClass) document.body.classList.add(extraClass);
-    window.html2canvas(el, {backgroundColor:'#ffffff', scale:2, useCORS:false, scrollX:0, scrollY:-window.scrollY}).then(function(canvas){
+    /* 가로 약 1080px(패들렛·휴대폰에서 보기 좋은 크기), iPad 캔버스 한도 안으로 */
+    var w = el.getBoundingClientRect().width || 800, hh = el.scrollHeight || 1000;
+    var sc = Math.min(2, 1080 / w); if(w * hh * sc * sc > 16e6) sc = Math.sqrt(16e6 / (w * hh));
+    window.html2canvas(el, {backgroundColor:'#ffffff', scale:sc, useCORS:false, scrollX:0, scrollY:-window.scrollY}).then(function(canvas){
       restore();
-      var a = document.createElement('a');
-      a.download = filename + '.png';
-      a.href = canvas.toDataURL('image/png');
-      document.body.appendChild(a); a.click(); a.remove();
-      toast(doneMsg || '그림 파일로 저장했어요');
+      function done(href, revoke){
+        var a = document.createElement('a');
+        a.download = filename + '.png';
+        a.href = href;
+        document.body.appendChild(a); a.click(); a.remove();
+        if(revoke) setTimeout(function(){ URL.revokeObjectURL(href); }, 60000);
+        toast(doneMsg || '그림으로 저장했어요. 패들렛에 올리기 전에 친구 이름이나 비밀이 없는지 한 번 더 봐요.');
+      }
+      if(canvas.toBlob && window.URL && URL.createObjectURL){
+        canvas.toBlob(function(b){ if(b) done(URL.createObjectURL(b), true); else done(canvas.toDataURL('image/png'), false); }, 'image/png');
+      } else done(canvas.toDataURL('image/png'), false);
     }).catch(function(){
       restore();
       toast('그림 저장이 되지 않았어요. 인쇄·PDF를 써 주세요.');
