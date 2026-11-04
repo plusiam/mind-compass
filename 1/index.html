@@ -6,7 +6,7 @@
 <title>1차시 마음 여행, 함께 출발 · 출발 카드 | 마음여행 길잡이</title>
 <meta name="description" content="『마음여행』 1차시 연계 웹 활동지: 이 상황에는 어떤 힘이 필요할까?, 마음여행 출발 카드">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="../assets/css/base.css?v=20261104h">
+<link rel="stylesheet" href="../assets/css/base.css?v=20261104i">
 <style>
 .powers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .power{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#fffefb;text-align:center;font-weight:800;line-height:1.4}
@@ -182,7 +182,7 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
       <li>출처: 최지욱 외(2023). 초등학생용 정신건강 리터러시(교사용 지도서). 한국교육환경보호원. 학습 활동지 1·2 — 대구마음교육연구회 제작.</li>
     </ul>
   </details>
-  <p class="credit">『마음여행』 1차시 연계 · 집필 한소연 · 웹 학습지 제작: 룰루랄라 한기쌤<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
+  <p class="credit">『마음여행』 1차시 연계 · 집필 한소연<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 학생이 쓴 내용은 서버로 보내지 않습니다.</p>
 </main>
 
 <div class="bar">
@@ -198,7 +198,7 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
 
 <script src="../assets/vendor/html2canvas.min.js"></script>
 <script src="../assets/vendor/qrcode.js"></script>
-<script src="../assets/js/common.js?v=20261104h"></script>
+<script src="../assets/js/common.js?v=20261104i"></script>
 <script>
 (function(){
   'use strict';
@@ -306,7 +306,7 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
   }
   document.getElementById('c-print').addEventListener('click', function(){ window.print(); dirty = false; });
   document.getElementById('c-img').addEventListener('click', function(){
-    MC.saveImage(document.querySelector('.sheet'), '1차시_마음여행_출발카드', null, '출발 카드를 저장했어요. 선생님께 드린 뒤 이 기기에서 파일을 지워 주세요.'); dirty = false;
+    MC.saveImage(document.querySelector('.sheet'), '1차시_마음여행_출발카드', 'cap-keep-name', '출발 카드를 저장했어요. 선생님께 드린 뒤 이 기기에서 파일을 지워 주세요.'); dirty = false;
   });
   document.getElementById('c-clear').addEventListener('click', function(){ clearCard(); MC.toast('출발 카드를 지웠어요'); });
 
@@ -314,7 +314,8 @@ body.capturing .scene .tog[aria-pressed="false"]{display:none}
   document.getElementById('btn-print').addEventListener('click', function(){ MC.printMenu(); });
   document.getElementById('btn-img').addEventListener('click', function(){
     var p = MC.currentPart();
-    MC.saveImage(document.querySelector('.sheet'), p && p.id === 'part-2' ? '1차시_마음여행_출발카드' : '1차시_어떤힘이필요할까');
+    if(p && p.id === 'part-2') MC.saveImage(document.querySelector('.sheet'), '1차시_마음여행_출발카드', 'cap-keep-name', '출발 카드를 저장했어요. 선생님께 드린 뒤 이 기기에서 파일을 지워 주세요.');
+    else MC.saveImage(document.querySelector('.sheet'), '1차시_어떤힘이필요할까');
   });
   document.getElementById('btn-clear').addEventListener('click', function(){
     MC.confirmClear(KEY, function(){ dirty = false; location.reload(); });
