@@ -191,7 +191,7 @@
       var node = R[b.t](b);
       (cur || sec).appendChild(node);
     });
-    sec.appendChild(el('p', 'credit print-only', '『마음여행』 ' + S.lesson + '차시 연계 웹학습지 · 마음여행 길잡이 maeum-edu.vercel.app/' + S.lesson + '/' + (pi ? '#' + p.id : '')));
+    sec.appendChild(el('p', 'credit print-only', '『마음여행』 ' + S.lesson + '차시 연계 웹학습지 · maeum-edu.vercel.app/' + S.lesson + '/' + (pi ? '#' + p.id : '') + ' · 웹 학습지 제작: 룰루랄라 한기쌤'));
     root.appendChild(sec);
   });
   /* 활동지 나눠 보기 단추 */

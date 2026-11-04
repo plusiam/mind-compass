@@ -162,15 +162,36 @@
   /* QR: 공개 주소를 학생 기기로 열게 한다. 외부 서비스 없이 qrcode.js(로컬)로 그린다 */
   var BASE = 'https://maeum-edu.vercel.app/';
   function pageUrl(){
-    var h = location.hash || '';
-    if(/^https?:$/.test(location.protocol) && (location.host === 'maeum-edu.vercel.app' || location.host === 'plusiam.github.io')) return location.origin + location.pathname + h;
-    return BASE + (document.documentElement.getAttribute('data-path') || '') + h;
+    // 어느 주소(plusiam.github.io 등)에서 열어도 QR·인쇄 주소는 maeum-edu.vercel.app 하나로 맞춘다
+    return BASE + (document.documentElement.getAttribute('data-path') || '') + (location.hash || '');
   }
   function qrSvg(text){
     if(typeof window.qrcode !== 'function') return '';
     var q = window.qrcode(0, 'M'); q.addData(text); q.make();
     return q.createSvgTag({cellSize:8, margin:2, scalable:true, alt:'QR 코드: ' + text});
   }
+  /* 인쇄 꼬리말: 모든 활동지 인쇄물(빈 학습지·쓴 내용)에 같은 문구와 그 차시 웹학습지로 가는 QR을 넣는다.
+     비공개·종이 전용 활동지(1차시 출발 카드, 3차시 익명, 12차시 모둠판, 14차시 쪽지가 있는 출구 카드, 16차시 도움망)는 QR 없이 글자만 */
+  var NO_QR = {'1':['part-2'], '3':'*', '12':'*', '14':['part-2'], '16':['part-1']};
+  function printFooters(){
+    var path = document.documentElement.getAttribute('data-path') || '';
+    var n = parseInt(path, 10); if(!n) return;
+    var parts = document.querySelectorAll('.part');
+    var firstId = parts.length ? parts[0].id : '';
+    var rule = NO_QR[String(n)];
+    Array.prototype.forEach.call(document.querySelectorAll('p.credit.print-only'), function(c){
+      var part = c.closest('.part');
+      var pid = part ? part.id : '';
+      var url = BASE + path + (pid && pid !== firstId ? '#' + pid : '');
+      var text = '『마음여행』 ' + n + '차시 연계 웹학습지 · ' + url.replace(/^https:\/\//, '') + ' · 웹 학습지 제작: 룰루랄라 한기쌤';
+      var noQr = rule === '*' || (rule && rule.indexOf(pid) >= 0) || typeof window.qrcode !== 'function';
+      c.classList.add('pf');
+      c.innerHTML = '';
+      var t = document.createElement('span'); t.className = 'pf-t'; t.textContent = text; c.appendChild(t);
+      if(!noQr){ var q = document.createElement('span'); q.className = 'pf-qr'; q.innerHTML = qrSvg(url); c.appendChild(q); }
+    });
+  }
+
   var qrBox;
   function showQr(url, title){
     if(typeof window.qrcode !== 'function'){ toast('QR을 준비하지 못했어요.'); return; }
@@ -255,6 +276,7 @@
       acts.insertBefore(q, acts.firstChild);
     }
     initParts();
+    printFooters();
   });
 
   /* 활동지 1·2 나눠 보기: .parts 단추(data-part) ↔ .part(id). 주소 #part-2 로 바로 열 수 있음 */
