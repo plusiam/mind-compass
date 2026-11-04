@@ -160,10 +160,10 @@
   }
 
   /* QR: 공개 주소를 학생 기기로 열게 한다. 외부 서비스 없이 qrcode.js(로컬)로 그린다 */
-  var BASE = 'https://plusiam.github.io/mind-compass/';
+  var BASE = 'https://maeum-edu.vercel.app/';
   function pageUrl(){
     var h = location.hash || '';
-    if(/^https?:$/.test(location.protocol) && location.host === 'plusiam.github.io') return location.origin + location.pathname + h;
+    if(/^https?:$/.test(location.protocol) && (location.host === 'maeum-edu.vercel.app' || location.host === 'plusiam.github.io')) return location.origin + location.pathname + h;
     return BASE + (document.documentElement.getAttribute('data-path') || '') + h;
   }
   function qrSvg(text){
