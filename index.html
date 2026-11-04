@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>마음여행 길잡이 · 함께 쓰면 좋은 정서조절 웹 활동지</title>
-<meta name="description" content="대구마음교육연구회 『마음여행』(초등 5~6학년 17차시 사회정서교육 프로그램)과 함께 쓰는 웹 활동지 모음. 설치·회원가입 없이 태블릿·크롬북·전자칠판에서 씁니다.">
+<title>마음여행 길잡이 · 함께 쓰면 좋은 정서조절 웹 학습지</title>
+<meta name="description" content="대구마음교육연구회 『마음여행』(초등 5~6학년 17차시 사회정서교육 프로그램)과 함께 쓰는 웹 학습지 모음. 설치·회원가입 없이 태블릿·크롬북·전자칠판에서 씁니다.">
 <meta property="og:title" content="마음여행 길잡이">
-<meta property="og:description" content="『마음여행』 17차시와 함께 쓰면 좋은 정서조절 웹 활동지">
+<meta property="og:description" content="『마음여행』 17차시와 함께 쓰면 좋은 정서조절 웹 학습지">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#1f6b78">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="assets/css/base.css?v=20261104g">
+<link rel="stylesheet" href="assets/css/base.css?v=20261104h">
 <style>
 .hero{background:var(--brand);color:#fff;padding:26px 0 30px}
 .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:.86rem;font-weight:700}
@@ -19,10 +19,17 @@
 .hero .lead{font-size:1.05rem;opacity:.95}
 .hero .about{margin-top:10px;font-size:.95rem;opacity:.9;max-width:44rem}
 
-.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
-.rule{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
-.rule b{display:block;font-size:1rem;margin-bottom:2px}
-.rule span{color:var(--muted);font-size:.92rem}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;list-style:none}
+.how li{background:var(--paper);border:1.5px solid var(--brand);border-radius:var(--radius);padding:12px 14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;align-items:start}
+.how .hn{grid-row:span 2;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800}
+.how b{font-size:1rem}
+.how span{color:#36424d;font-size:.92rem}
+.how-more{margin-top:6px;font-size:.9rem;text-align:right}
+.how-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font-weight:700}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.rule{background:var(--soft);border-radius:12px;padding:8px 12px}
+.rule b{display:block;font-size:.92rem}
+.rule span{color:var(--muted);font-size:.86rem}
 
 .filter{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 6px}
 .filter .lab{font-weight:800;color:var(--muted);font-size:.9rem;margin-right:2px}
@@ -36,15 +43,15 @@
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0;scroll-margin-top:12px}
 .card.target{outline:3px solid var(--brand);outline-offset:2px}
 .card .no{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:.84rem;font-weight:800;color:var(--brand-ink)}
-.card .no small{font-weight:600;color:var(--muted)}
+.card .no small{font-weight:600;color:var(--muted);font-size:.85rem}
 .card h3{font-size:1.1rem;line-height:1.35}
 .card .iq{font-size:.9rem;color:#36424d;background:var(--soft);border-radius:10px;padding:6px 10px}
 .card ol{padding-left:0;list-style:none;font-size:.88rem;color:var(--muted);display:grid;gap:2px}
 .tool{margin-top:auto;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:6px}
-.tool .kind{font-size:.78rem;font-weight:800;letter-spacing:.01em}
+.tool .kind{font-size:.86rem;font-weight:800;letter-spacing:.01em}
 .tool .kind.new{color:var(--brand-ink)}
 .tool .kind.old{color:#8a5a00}
-.tool .when{font-size:.86rem;color:var(--muted)}
+.tool .when{font-size:.9rem;color:var(--muted)}
 .tool .go{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:12px;font-weight:800;text-decoration:none}
 .tool .go.new{background:var(--brand);color:#fff}
 .tool .go.new:hover{background:var(--brand-ink)}
@@ -57,8 +64,8 @@
 .qr-all{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
 .tool .pdf-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1.5px dashed var(--line);border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--brand-ink)}
 .tool .pdf-link:hover{background:var(--soft)}
-.tool .more{font-size:.86rem;color:var(--muted)}
-.tool .more a{font-weight:700;color:#6b4800}
+.tool .more{font-size:.9rem;color:var(--muted)}
+.tool .more a{font-weight:700;color:#6b4800;display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 .tool .more small{color:var(--muted)}
 .allpdf{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:#fffdf3;border:1.5px solid #e6d7a5;border-radius:var(--radius);padding:14px 16px;margin-top:12px}
 .allpdf b{display:block;font-size:1.02rem}
@@ -68,7 +75,7 @@
 .flow{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:12px;box-shadow:var(--shadow)}
 .flow p{font-size:.92rem;color:var(--muted)}
 .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
-.chain a,.chain span{background:var(--brand-soft);color:var(--brand-ink);border-radius:9px;padding:4px 10px;font-weight:700;font-size:.92rem;text-decoration:none}
+.chain a,.chain span{display:inline-flex;align-items:center;min-height:44px;background:var(--brand-soft);color:var(--brand-ink);border-radius:9px;padding:4px 12px;font-weight:700;font-size:.92rem;text-decoration:none}
 .chain i{font-style:normal;color:var(--brand-ink);font-weight:800}
 
 .guide{margin-top:24px}
@@ -82,7 +89,13 @@
 .empty{color:var(--muted);text-align:center;padding:24px;border:1px dashed var(--line);border-radius:var(--radius)}
 
 @media (max-width:760px){
-  .rules,.tips{grid-template-columns:minmax(0,1fr)}
+  .rules,.tips,.how{grid-template-columns:minmax(0,1fr)}
+}
+/* 전자칠판·큰 화면: 화면을 넓게 쓰고 카드를 3열로 */
+@media screen and (min-width:1600px){
+  .hero .wrap,main.wrap{max-width:86rem}
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  body{font-size:1.15rem}
 }
 @media print{
   .hero{background:#fff;color:var(--ink);padding:0 0 4mm;border-bottom:.4mm solid var(--ink)}
@@ -97,20 +110,30 @@
   <div class="wrap">
     <span class="eyebrow">🧭 대구마음교육연구회 『마음여행』 연계</span>
     <h1>마음여행 길잡이</h1>
-    <p class="lead">함께 쓰면 좋은 정서조절 웹 활동지</p>
-    <p class="about">초등 5~6학년 사회정서교육 프로그램 『마음여행』 17차시와 함께 쓰는 웹 활동지입니다. 설치나 회원가입 없이 태블릿·크롬북·전자칠판에서 바로 씁니다.</p>
+    <p class="lead">함께 쓰면 좋은 정서조절 웹 학습지</p>
+    <p class="about">초등 5~6학년 사회정서교육 프로그램 『마음여행』 17차시와 함께 쓰는 웹 학습지입니다. 설치나 회원가입 없이 태블릿·크롬북·전자칠판에서 바로 씁니다.</p>
   </div>
 </header>
 
 <main class="wrap">
+  <section aria-labelledby="how-h">
+    <h2 id="how-h" class="sr-only">이렇게 써요</h2>
+    <ol class="how">
+      <li><span class="hn" aria-hidden="true">1</span><b>차시 고르기</b><span>아래 카드에서 오늘 수업 차시를 골라요.</span></li>
+      <li><span class="hn" aria-hidden="true">2</span><b>학생 기기로 열기</b><span>카드의 「QR」을 전자칠판에 띄우면 학생이 태블릿·크롬북으로 찍어 열어요.</span></li>
+      <li><span class="hn" aria-hidden="true">3</span><b>인쇄·저장</b><span>종이로 쓸 땐 「📄 빈 학습지 PDF」, 쓴 내용은 학습지 화면의 「🖨️ 인쇄·PDF」로요.</span></li>
+    </ol>
+    <p class="how-more"><a href="#guide-h">자세한 선생님 안내 ↓</a></p>
+  </section>
+
   <section class="rules" aria-label="사용 원칙">
-    <div class="rule"><b>① 과정안 없이도 수업이 돼요</b><span>웹 활동지는 원고 활동을 확장하거나 대체할 때 골라 써요.</span></div>
+    <div class="rule"><b>① 과정안 없이도 수업이 돼요</b><span>웹 학습지는 『마음여행』 활동을 확장하거나 대체할 때 골라 써요.</span></div>
     <div class="rule"><b>② 학생 기록은 이 기기에만</b><span>서버로 보내지 않아요. 공용 기기는 다 쓰면 「내 기록 지우기」를 눌러요.</span></div>
     <div class="rule"><b>③ 상담을 대신하지 않아요</b><span>정답·점수가 없어요. 위기 징후는 학교 학생지원 체계로 연결해요.</span></div>
   </section>
 
   <section class="allpdf" aria-label="빈 학습지 모음">
-    <div><b>📄 17차시 빈 학습지 한 번에 받기</b><span>원고 활동지를 손글씨용으로 모은 PDF(A4 · 모둠판 3장은 A3 가로, 27쪽). 아이패드·크롬북에서도 그대로 인쇄돼요.</span></div>
+    <div><b>📄 17차시 빈 학습지 한 번에 받기</b><span>『마음여행』 학습 활동지를 손글씨용으로 모은 PDF(A4 · 모둠판 3장은 A3 가로, 27쪽). 아이패드·크롬북에서도 그대로 인쇄돼요.</span></div>
     <a class="btn primary" href="pdf/mind-compass-blank-all.pdf" target="_blank" rel="noopener">전체 PDF 받기</a>
   </section>
 
@@ -146,7 +169,7 @@
       </ul>
       <div class="qr-all"><button class="btn primary" type="button" id="qr-print">🖨️ QR 모음 인쇄·PDF</button><button class="btn" type="button" id="qr-home">📱 첫 화면 QR</button></div></div>
       <div class="tip-c"><b>🔗 함께 쓰는 기존 도구</b><ul>
-        <li>3·5·6·7·13차시 카드 아래 「더 해 보기」는 룰루랄라 한기쌤이 2025~2026년에 만든 공개 도구로, 원고 활동지도 연구회 개발 자료도 아니에요.</li>
+        <li>3·5·6·7·13차시 카드 아래 「더 해 보기」는 룰루랄라 한기쌤이 2025~2026년에 만든 공개 도구로, 『마음여행』 학습지도 연구회 개발 자료도 아니에요.</li>
         <li>새 창으로 열려요. 기존 도구도 학생 기록을 서버로 보내지 않아요.</li>
       </ul></div>
     </div>
@@ -164,7 +187,7 @@
 </div>
 
 <script src="assets/vendor/qrcode.js"></script>
-<script src="assets/js/common.js?v=20261104g"></script>
+<script src="assets/js/common.js?v=20261104h"></script>
 <script>
 (function(){
   'use strict';
@@ -200,22 +223,22 @@
   // 차시별 원고 활동지 웹학습지(17차시 모두)
   var NEW = {
     1:{name:'이 상황에는 어떤 힘이 필요할까? · 마음여행 출발 카드', when:'출발 카드는 저장하지 않고 인쇄해 봉투에 보관'},
-    2:{name:'일상생활 속 영웅 되기', when:'학습 활동지 1'},
-    3:{name:'우리 반 고민상담소', when:'익명 활동이라 화면에 쓰지 않고 빈 학습지 인쇄만', paperOnly:true},
-    4:{name:'당근마켓(학생용) · 판매자·구매내역', when:'학습 활동지 1(학생용)·3'},
-    5:{name:'감정 신호 알아보기 · 감정 와이파이', when:'학습 활동지 1·2'},
-    6:{name:'생각에 따른 행동과 결과 알아보기', when:'학습 활동지 1'},
-    7:{name:'마음 상점 아이템 만들기', when:'학습 활동지 1'},
-    8:{name:'듣고 확인하는 공감 대화', when:'활동지 8-1'},
-    9:{name:'공 하나를 함께 쓰는 4STEP', when:'활동지 9-1'},
-    10:{name:'개인에서 모둠으로 의견 모으기', when:'활동지 10-1'},
-    11:{name:'오해 추적과 생각 멈춤', when:'학습 활동지 1(문장을 눌러 밑줄·물결선)'},
-    12:{name:'우리 놀이터 회의록 · 같은 그림, 다른 마음', when:'모둠 활동지 1(A3 가로)·2(A4) — 종이로 쓰는 모둠판', paperOnly:true},
-    13:{name:'공정한 약속 만들기', when:'학습 활동지 1'},
-    14:{name:'갈고리를 찾아라! · 닻을 내려보기', when:'학습 활동지 1·2, 선생님께 드리는 쪽지 · 모둠판 A3는 PDF에'},
-    15:{name:'감정 4분면 · 나만의 방법', when:'학습 활동지 1 · 우리 모둠 방법 지도 A3는 PDF에'},
-    16:{name:'나의 도움망 · 도움을 청하는 말', when:'학습 활동지 1·2(상황 카드는 가상)'},
-    17:{name:'키워드 사전 · 성장 지도', when:'학습 활동지 1·2(갤러리 워크는 전시용 보기)'}
+    2:{name:'일상생활 속 영웅 되기', when:''},
+    3:{name:'우리 반 고민상담소', when:'익명 활동이라 화면에 쓰지 않고 종이로 써요', paperOnly:true},
+    4:{name:'장점 당근마켓 · 판매자·구매내역', when:''},
+    5:{name:'감정 신호 알아보기 · 감정 와이파이', when:''},
+    6:{name:'생각에 따른 행동과 결과 알아보기', when:''},
+    7:{name:'마음 상점 아이템 만들기', when:''},
+    8:{name:'듣고 확인하는 공감 대화', when:''},
+    9:{name:'공 하나를 함께 쓰는 4STEP', when:''},
+    10:{name:'개인에서 모둠으로 의견 모으기', when:''},
+    11:{name:'오해 추적과 생각 멈춤', when:'문장을 눌러 밑줄·물결선을 그어요'},
+    12:{name:'우리 놀이터 회의록 · 같은 그림, 다른 마음', when:'모둠판은 종이로 써요(A3 가로·A4)', paperOnly:true},
+    13:{name:'공정한 약속 만들기', when:''},
+    14:{name:'갈고리를 찾아라! · 닻을 내려보기', when:'선생님께 드리는 쪽지 포함 · 모둠판 A3는 PDF에'},
+    15:{name:'감정 4분면 · 나만의 방법', when:'우리 모둠 방법 지도 A3는 PDF에'},
+    16:{name:'나의 도움망 · 도움을 청하는 말', when:'상황 카드는 가상이에요'},
+    17:{name:'키워드 사전 · 성장 지도', when:'갤러리 워크는 전시용 보기'}
   };
   // 더 해 보기: 함께 쓰면 좋은 기존 도구(룰루랄라 한기쌤 개인 공개 자료, 연구회 개발 자료 아님, 원고 활동지 아님)
   var OLD = {
@@ -246,16 +269,16 @@
     c.appendChild(el('p', 'iq', '탐구질문 · ' + l[2]));
     var ol = el('ol'); ['①','②','③'].forEach(function(m, i){ if(l[3][i]) ol.appendChild(el('li', '', m + ' ' + l[3][i])); }); c.appendChild(ol);
     var t = el('div', 'tool');
-    t.appendChild(el('span', 'kind new', NEW[n].paperOnly ? '원고 활동지 · 빈 학습지 인쇄' : '원고 활동지 웹학습지'));
-    t.appendChild(el('span', 'when', NEW[n].name + ' — ' + NEW[n].when));
-    var a = el('a', 'go new', NEW[n].paperOnly ? '활동지 보기·인쇄 →' : '웹학습지 열기 →'); a.href = n + '/';
+    t.appendChild(el('span', 'kind new', NEW[n].paperOnly ? '종이로만 써요 · 빈 학습지' : '웹 학습지'));
+    t.appendChild(el('span', 'when', NEW[n].name + (NEW[n].when ? ' — ' + NEW[n].when : '')));
+    var a = el('a', 'go new', NEW[n].paperOnly ? '빈 학습지 보기·인쇄 →' : '웹 학습지 열기 →'); a.href = n + '/';
     t.appendChild(withQr(a, MC.BASE + n + '/', n + '차시 ' + l[1]));
     var pd = el('a', 'pdf-link', '📄 빈 학습지 PDF'); pd.href = pdfOf(n); pd.target = '_blank'; pd.rel = 'noopener'; t.appendChild(pd);
     if(OLD[n]){
       var m = el('p', 'more');
       m.appendChild(document.createTextNode('더 해 보기 · '));
       var b = el('a', '', OLD[n].name + ' ↗'); b.href = OLD[n].url; b.target = '_blank'; b.rel = 'noopener'; m.appendChild(b);
-      m.appendChild(el('small', '', ' (기존 공개 도구, 원고 활동지 아님)'));
+      m.appendChild(el('small', '', ' (기존 공개 도구, 『마음여행』 학습지 아님)'));
       t.appendChild(m);
     }
     c.appendChild(t);
@@ -312,7 +335,7 @@
       }
       list.appendChild(s);
     });
-    if(!shown) list.appendChild(el('p', 'empty', '이 영역에는 웹 활동지가 없어요. 종이 활동지로 운영해요.'));
+    if(!shown) list.appendChild(el('p', 'empty', '이 영역에는 웹 학습지가 없어요. 빈 학습지로 운영해요.'));
   }
 
   // 주소: #self 같은 영역, #l15 같은 차시
