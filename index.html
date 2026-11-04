@@ -142,13 +142,13 @@
       </ul>
       <div class="qr-all"><button class="btn primary" type="button" id="qr-print">🖨️ QR 모음 인쇄·PDF</button><button class="btn" type="button" id="qr-home">📱 첫 화면 QR</button></div></div>
       <div class="tip-c"><b>🔗 함께 쓰는 기존 도구</b><ul>
-        <li>3·5·6·7·13차시 카드 아래 「더 해 보기」는 여한기가 2025~2026년에 만든 공개 도구로, 원고 활동지도 연구회 개발 자료도 아니에요.</li>
+        <li>3·5·6·7·13차시 카드 아래 「더 해 보기」는 룰루랄라 한기쌤이 2025~2026년에 만든 공개 도구로, 원고 활동지도 연구회 개발 자료도 아니에요.</li>
         <li>새 창으로 열려요. 기존 도구도 학생 기록을 서버로 보내지 않아요.</li>
       </ul></div>
     </div>
   </section>
 
-  <p class="authors">『마음여행』 집필: 한소연(1·17차시) · 이영미(2~4차시) · 이현주(5~7차시) · 김상일(8~10차시) · 신지수(11~13차시) · 여한기(14~16차시)<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 웹 구현 여한기(대구남부초)</p>
+  <p class="authors">『마음여행』 집필: 한소연(1·17차시) · 이영미(2~4차시) · 이현주(5~7차시) · 김상일(8~10차시) · 신지수(11~13차시) · 여한기(14~16차시)<br>대구마음교육연구회 사회정서교육 교사연구회(2026) · 웹 학습지 제작: 룰루랄라 한기쌤</p>
   <p class="credit">학생이 쓴 내용은 서버로 보내지 않습니다.</p>
 </main>
 
@@ -213,7 +213,7 @@
     16:{name:'나의 도움망 · 도움을 청하는 말', when:'학습 활동지 1·2(상황 카드는 가상)'},
     17:{name:'키워드 사전 · 성장 지도', when:'학습 활동지 1·2(갤러리 워크는 전시용 보기)'}
   };
-  // 더 해 보기: 함께 쓰면 좋은 기존 도구(여한기 개인 공개 자료, 연구회 개발 자료 아님, 원고 활동지 아님)
+  // 더 해 보기: 함께 쓰면 좋은 기존 도구(룰루랄라 한기쌤 개인 공개 자료, 연구회 개발 자료 아님, 원고 활동지 아님)
   var OLD = {
     3:{name:'긍정 카드 메이커', url:'https://plusiam.github.io/maum-hub/positive-card-maker/'},
     5:{name:'순간감정카드 메이커', url:'https://plusiam.github.io/emotion-card-maker/'},
@@ -271,7 +271,7 @@
     L.forEach(function(l){ items.push([MC.BASE + l[0] + '/', l[0] + '차시 ' + l[1], NEW[l[0]].name]); });
     var s = el('div', 'qr-sheet');
     s.appendChild(el('h2', '', '🧭 마음여행 길잡이 QR 모음'));
-    s.appendChild(el('p', 'qs-sub', '태블릿·크롬북 카메라로 찍으면 바로 열려요. · plusiam.github.io/mind-compass/'));
+    s.appendChild(el('p', 'qs-sub', '태블릿·크롬북 카메라로 찍으면 바로 열려요. · maeum-edu.vercel.app/'));
     var g = el('div', 'qs-grid');
     items.forEach(function(it){
       var c = el('div', 'qs-cell'); var sv = el('div', 'qr-svg'); sv.innerHTML = MC.qrSvg(it[0]); c.appendChild(sv);
