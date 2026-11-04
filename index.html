@@ -85,6 +85,14 @@
 .tip-c b{display:block;margin-bottom:4px}
 .tip-c ul{padding-left:18px;font-size:.92rem;color:#36424d}
 .tip-c li+li{margin-top:3px}
+.tip-wide{grid-column:1/-1}
+.sl-list{display:grid;gap:6px;margin-top:10px}
+.sl-row{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:4px 10px;align-items:start;border-top:1px dashed var(--line);padding-top:6px}
+.sl-area{font-size:.86rem;font-weight:800;color:var(--muted);padding-top:10px}
+.sl-links{display:flex;flex-wrap:wrap;gap:6px}
+.sl-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--brand-ink)}
+.sl-links a:hover{background:var(--soft)}
+@media (max-width:640px){.sl-row{grid-template-columns:1fr}.sl-area{padding-top:0}}
 .authors{font-size:.9rem;color:var(--muted);margin-top:18px;text-align:center;line-height:1.8}
 .empty{color:var(--muted);text-align:center;padding:24px;border:1px dashed var(--line);border-radius:var(--radius)}
 
@@ -119,7 +127,7 @@
   <section aria-labelledby="how-h">
     <h2 id="how-h" class="sr-only">이렇게 써요</h2>
     <ol class="how">
-      <li><span class="hn" aria-hidden="true">1</span><b>차시 고르기</b><span>아래 카드에서 오늘 수업 차시를 골라요.</span></li>
+      <li><span class="hn" aria-hidden="true">1</span><b>차시 고르기</b><span>아래 카드에서 오늘 수업 차시를 골라요. 수업 슬라이드는 <a href="#slides-h">선생님 안내</a>에 있어요.</span></li>
       <li><span class="hn" aria-hidden="true">2</span><b>학생 기기로 열기</b><span>카드의 「QR」을 전자칠판에 띄우면 학생이 태블릿·크롬북으로 찍어 열어요.</span></li>
       <li><span class="hn" aria-hidden="true">3</span><b>인쇄·저장</b><span>종이로 쓸 땐 「📄 빈 학습지 PDF」, 쓴 내용은 학습지 화면의 「🖨️ 인쇄·PDF」로요.</span></li>
     </ol>
@@ -168,6 +176,11 @@
         <li>집에서 QR을 열면 학교에서 쓴 내용은 보이지 않아요. 공용 기기는 다 쓰면 「내 기록 지우기」를 눌러요.</li>
       </ul>
       <div class="qr-all"><button class="btn primary" type="button" id="qr-print">🖨️ QR 모음 인쇄·PDF</button><button class="btn" type="button" id="qr-home">📱 첫 화면 QR</button></div></div>
+      <div class="tip-c tip-wide" id="slides-h"><b>🖥️ 수업 슬라이드 (교사용)</b><ul>
+        <li>『마음여행』 17차시 수업 슬라이드예요. 링크를 누르면 새 창에서 바로 슬라이드쇼가 열리고, 클릭할 때마다 발문·활동 안내가 차례로 나타나요.</li>
+        <li><strong>보기 전용</strong>이에요(다운로드·복사·인쇄 꺼 둠). 전자칠판에 띄워 쓰고, 학생 기기에는 QR로 웹 학습지만 열어 주세요.</li>
+        <li>수업에 자유롭게 쓰되 복제·재배포·상업적 이용은 하지 말아 주세요. 그림책은 표지 대신 책 정보로 소개했고, 영상은 유튜브 링크로 이어져요. 일부 그림은 AI로 만들었어요.</li>
+      </ul><div id="slide-list" class="sl-list"></div></div>
       <div class="tip-c"><b>🔗 함께 쓰는 기존 도구</b><ul>
         <li>5·6·7·13차시 카드 아래 「더 해 보기」는 2025~2026년에 따로 만든 기존 공개 도구로, 『마음여행』 학습지도 연구회 개발 자료도 아니에요.</li>
         <li>새 창으로 열려요. 기존 도구도 학생 기록을 서버로 보내지 않아요.</li>
@@ -188,6 +201,7 @@
 
 <script src="assets/vendor/qrcode.js"></script>
 <script src="assets/js/common.js?v=20261104j"></script>
+<script src="assets/js/slides.js?v=20261105a" defer></script>
 <script>
 (function(){
   'use strict';
