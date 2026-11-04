@@ -147,11 +147,11 @@ body.cap-note .note-card .want[aria-pressed="false"]{display:none}
 body.capturing details.help, body.capturing .no-print{display:none!important}
 body.capturing .print-only{display:block}
 body.capturing .who .print-only{display:inline}
-/* 그림으로 저장(패들렛에 올리기 좋게): 종이 전용 꼬리말·QR·학교/반 칸·종이 안내·위기 안내 상자는 빼고, 이름 줄도 뺀다(1차시 출발 카드는 이름 유지). 화면 전용이라 인쇄와 무관 */
+/* 그림으로 저장(패들렛에 올리기 좋게): 종이 전용 꼬리말·QR·학교/반 칸·종이 안내·위기 안내 상자는 빼고, 이름 줄은 이름을 썼을 때만 넣는다. 화면 전용이라 인쇄와 무관 */
 .cap-label{display:none}
 @media screen{
   body.capturing .credit.pf, body.capturing .pf-qr, body.capturing .ws-info, body.capturing .turn-note, body.capturing .back-head, body.capturing .cap-hide{display:none!important}
-  body.capturing:not(.cap-keep-name) .who{display:none!important}
+  body.capturing.cap-noname .who{display:none!important}
   body.capturing .ws-inline > .cap-field{flex:1 1 12rem;min-width:0}
   body.capturing .cap-label{display:block;margin-top:14px;padding-top:8px;border-top:1px dashed var(--line);text-align:center;font-size:.85rem;color:var(--muted)}
 }

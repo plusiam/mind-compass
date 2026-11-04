@@ -49,7 +49,9 @@
     /* 맨 아래 한 줄: 무슨 활동인지(주소·QR·제작자 없이) */
     var lab = null, n = parseInt(document.documentElement.getAttribute('data-path') || '', 10), h1 = document.querySelector('.top h1');
     if(n && h1 && !extraClass){ lab = document.createElement('p'); lab.className = 'cap-label'; lab.textContent = '『마음여행』 ' + n + '차시 · ' + h1.textContent.trim(); el.appendChild(lab); }
-    function restore(){ undo(); if(lab) lab.remove(); document.body.classList.remove('capturing'); if(extraClass) document.body.classList.remove(extraClass); }
+    function restore(){ undo(); if(lab) lab.remove(); document.body.classList.remove('capturing', 'cap-noname'); if(extraClass) document.body.classList.remove(extraClass); }
+    /* 학생이 이름 칸에 쓴 이름은 그림에 넣고(패들렛에서 누가 썼는지 알게), 비어 있으면 이름 줄을 뺀다 */
+    var nmEl = document.getElementById('name'); if(!nmEl || !nmEl.value.trim()) document.body.classList.add('cap-noname');
     document.body.classList.add('capturing');
     if(extraClass) document.body.classList.add(extraClass);
     /* 가로 약 1080px(패들렛·휴대폰에서 보기 좋은 크기), iPad 캔버스 한도 안으로 */
@@ -195,7 +197,7 @@
       var part = c.closest('.part');
       var pid = part ? part.id : '';
       var url = BASE + path + (pid && pid !== firstId ? '#' + pid : '');
-      var text = '『마음여행』 ' + n + '차시 연계 웹학습지 · ' + url.replace(/^https:\/\//, '') + ' · 웹 학습지 제작: 룰루랄라 한기쌤';
+      var text = '『마음여행』 ' + n + '차시 연계 웹 학습지 · ' + url.replace(/^https:\/\//, '');
       var noQr = rule === '*' || (rule && rule.indexOf(pid) >= 0) || typeof window.qrcode !== 'function';
       c.classList.add('pf');
       c.innerHTML = '';
