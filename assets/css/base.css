@@ -1,8 +1,9 @@
 /* 마음여행 길잡이 공통 스타일 · 외부 글꼴·CDN 없음 */
 :root{
-  --bg:#f6f4ef; --paper:#ffffff; --ink:#1e2a33; --muted:#55606b; --line:#e2ddd3; --soft:#f0ede6;
-  --brand:#1f6b78; --brand-ink:#16525c; --brand-soft:#e3f0f1; --accent:#b8860b;
-  --radius:16px; --shadow:0 1px 2px rgba(30,42,51,.06),0 6px 18px rgba(30,42,51,.06);
+  /* 2026-11-05 색감: 크림·짙은 갈색·올리브 (레퍼런스 maeum-design-reference) */
+  --bg:#FCF5E9; --paper:#FFFDF8; --ink:#36291E; --muted:#6B5A48; --line:#E9DCC6; --soft:#F5EBDB;
+  --brand:#59643B; --brand-ink:#4A5330; --brand-soft:#EEF0DC; --accent:#C98A3E;
+  --radius:16px; --shadow:0 1px 2px rgba(54,41,30,.06),0 6px 18px rgba(54,41,30,.07);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
@@ -74,14 +75,14 @@ details.help summary{cursor:pointer;font-weight:700;color:var(--muted)}
 details.help[open] summary{margin-bottom:8px}
 .cands{display:flex;flex-wrap:wrap;gap:8px}
 
-.bar{position:sticky;bottom:0;z-index:20;background:rgba(246,244,239,.96);border-top:1px solid var(--line);margin-top:20px;padding:10px 0;backdrop-filter:blur(4px)}
+.bar{position:sticky;bottom:0;z-index:20;background:rgba(252,245,233,.96);border-top:1px solid var(--line);margin-top:20px;padding:10px 0;backdrop-filter:blur(4px)}
 .bar .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
 .bar .acts{display:flex;flex-wrap:wrap;gap:8px}
 .saved{font-size:.85rem;color:var(--muted)}
 
 .teacher{margin:18px auto 0;font-size:.93rem}
 .teacher summary{cursor:pointer;font-weight:700;color:var(--brand-ink)}
-.teacher ul{padding-left:20px;margin-top:8px;color:#36424d}
+.teacher ul{padding-left:20px;margin-top:8px;color:var(--ink)}
 .teacher li+li{margin-top:4px}
 .credit{color:var(--muted);font-size:.85rem;margin:18px auto 28px;text-align:center}
 
@@ -177,6 +178,8 @@ body.typing .bar{display:none}
 }
 
 @media print{
+  /* 인쇄·빈 학습지 PDF는 예전 색 그대로(화면 색감만 바꿈) */
+  :root{--bg:#f6f4ef;--paper:#ffffff;--ink:#1e2a33;--muted:#55606b;--line:#e2ddd3;--soft:#f0ede6;--brand:#1f6b78;--brand-ink:#16525c;--brand-soft:#e3f0f1;--accent:#b8860b}
   @page{size:A4 portrait;margin:12mm}
   body{background:#fff;font-size:10pt;line-height:1.5}
   .note{font-size:8.5pt;margin-top:1mm}

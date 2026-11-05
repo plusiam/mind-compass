@@ -9,21 +9,25 @@
 <meta property="og:description" content="『마음여행』 17차시와 함께 쓰면 좋은 정서조절 웹 학습지">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
-<meta name="theme-color" content="#1f6b78">
+<meta name="theme-color" content="#FCF5E9">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-<link rel="stylesheet" href="assets/css/base.css?v=20261104j">
+<link rel="stylesheet" href="assets/css/base.css?v=20261105a">
 <style>
-.hero{background:var(--brand);color:#fff;padding:26px 0 30px}
-.hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:.86rem;font-weight:700}
-.hero h1{font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.2;margin:10px 0 4px;letter-spacing:-.02em}
-.hero .lead{font-size:1.05rem;opacity:.95}
-.hero .about{margin-top:10px;font-size:.95rem;opacity:.9;max-width:44rem}
+.hero{background:var(--bg);color:var(--ink);padding:24px 0 8px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+.hero .eyebrow{display:inline-block;border-left:4px solid var(--brand);padding:0 0 0 10px;font-size:.86rem;font-weight:700;line-height:1.4}
+.hero h1{font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.2;margin:12px 0 6px;letter-spacing:-.03em;font-weight:900}
+.hero .lead{font-size:1.05rem;font-weight:700}
+.hero .about{margin-top:10px;font-size:.95rem;color:var(--muted);max-width:44rem}
+.hero-art{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:3/2;box-shadow:0 8px 24px rgba(54,41,30,.12);background:var(--soft)}
+.hero-art img{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:720px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
 
 .how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;list-style:none}
 .how li{background:var(--paper);border:1.5px solid var(--brand);border-radius:var(--radius);padding:12px 14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;align-items:start}
 .how .hn{grid-row:span 2;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800}
 .how b{font-size:1rem}
-.how span{color:#36424d;font-size:.92rem}
+.how span{color:var(--ink);font-size:.92rem}
 .how-more{margin-top:6px;font-size:.9rem;text-align:right}
 .how-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font-weight:700}
 .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
@@ -34,10 +38,14 @@
 .filter{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 6px}
 .filter .lab{font-weight:800;color:var(--muted);font-size:.9rem;margin-right:2px}
 .filter .tog{min-height:44px;font-size:.95rem}
+.filter .tog[aria-pressed="true"]{background:var(--brand);border-color:var(--brand)}
 
 .area{margin:20px 0 8px}
 .area-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:10px}
-.area-h h2{font-size:1.2rem}
+.area-h h2{font-size:1.2rem;border-left:5px solid var(--brand);padding-left:10px;line-height:1.3}
+.area-art{display:block;margin-left:auto;align-self:center;width:150px;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--soft)}
+.area-h:has(.area-art){align-items:center}
+@media (max-width:560px){.area-art{order:3;margin:6px 0 0;width:100%;height:110px;aspect-ratio:auto}}
 .area-h span{color:var(--muted);font-size:.9rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(17.5rem,1fr));gap:12px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0;scroll-margin-top:12px}
@@ -45,7 +53,7 @@
 .card .no{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:.84rem;font-weight:800;color:var(--brand-ink)}
 .card .no small{font-weight:600;color:var(--muted);font-size:.85rem}
 .card h3{font-size:1.1rem;line-height:1.35}
-.card .iq{font-size:.9rem;color:#36424d;background:var(--soft);border-radius:10px;padding:6px 10px}
+.card .iq{font-size:.9rem;color:var(--ink);background:var(--soft);border-radius:10px;padding:6px 10px}
 .card ol{padding-left:0;list-style:none;font-size:.88rem;color:var(--muted);display:grid;gap:2px}
 .tool{margin-top:auto;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:6px}
 .tool .kind{font-size:.86rem;font-weight:800;letter-spacing:.01em}
@@ -58,7 +66,7 @@
 .tool .go.old{background:#fff;border:1.5px solid #e0c98f;color:#6b4800}
 .tool .go.old:hover{background:#fff8e6}
 .tool .go.extra{background:var(--brand-soft);border:1.5px solid var(--brand);color:var(--brand-ink)}
-.tool .go.extra:hover{background:#d3e8ea}
+.tool .go.extra:hover{background:#E3E7C9}
 .tool .row2{display:flex;gap:6px}
 .tool .row2 .go{flex:1}
 .tool .qb{flex:none;min-width:56px;min-height:48px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-weight:800;font-size:.85rem}
@@ -69,7 +77,7 @@
 .tool .more{font-size:.9rem;color:var(--muted)}
 .tool .more a{font-weight:700;color:#6b4800;display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 .tool .more small{color:var(--muted)}
-.allpdf{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:#fffdf3;border:1.5px solid #e6d7a5;border-radius:var(--radius);padding:14px 16px;margin-top:12px}
+.allpdf{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:#FFF8EA;border:1.5px solid #E6CFA3;border-radius:var(--radius);padding:14px 16px;margin-top:12px}
 .allpdf b{display:block;font-size:1.02rem}
 .allpdf span{display:block;font-size:.9rem;color:var(--muted)}
 .tool .paper{font-size:.9rem;color:var(--muted);background:var(--soft);border-radius:10px;padding:8px 10px;text-align:center}
@@ -85,7 +93,7 @@
 .tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .tip-c{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
 .tip-c b{display:block;margin-bottom:4px}
-.tip-c ul{padding-left:18px;font-size:.92rem;color:#36424d}
+.tip-c ul{padding-left:18px;font-size:.92rem;color:var(--ink)}
 .tip-c li+li{margin-top:3px}
 .tip-wide{grid-column:1/-1}
 .sl-list{display:grid;gap:6px;margin-top:10px}
@@ -109,6 +117,8 @@
 }
 @media print{
   .hero{background:#fff;color:var(--ink);padding:0 0 4mm;border-bottom:.4mm solid var(--ink)}
+  .hero .wrap{display:block}
+  .hero-art,.area-art{display:none!important}
   .filter,.bar{display:none!important}
   .card{box-shadow:none;break-inside:avoid}
   .tool .go{min-height:auto;border:.3mm solid #999;background:none;color:var(--ink)}
@@ -118,10 +128,13 @@
 <body>
 <header class="hero">
   <div class="wrap">
+    <div class="hero-txt">
     <span class="eyebrow">🧭 대구마음교육연구회 『마음여행』 연계</span>
     <h1>마음여행 길잡이</h1>
     <p class="lead">함께 쓰면 좋은 정서조절 웹 학습지</p>
     <p class="about">초등 5~6학년 사회정서교육 프로그램 『마음여행』 17차시와 함께 쓰는 웹 학습지입니다. 설치나 회원가입 없이 태블릿·크롬북·전자칠판에서 바로 씁니다.</p>
+    </div>
+    <figure class="hero-art"><img src="assets/img/01-home-1200.webp" srcset="assets/img/01-home-600.webp 600w, assets/img/01-home-1200.webp 1200w" sizes="(max-width:720px) 100vw, 440px" width="1200" height="800" alt="" fetchpriority="high"></figure>
   </div>
 </header>
 
@@ -202,18 +215,18 @@
 </div>
 
 <script src="assets/vendor/qrcode.js"></script>
-<script src="assets/js/common.js?v=20261104j"></script>
+<script src="assets/js/common.js?v=20261105a"></script>
 <script src="assets/js/slides.js?v=20261105a" defer></script>
 <script>
 (function(){
   'use strict';
   var AREAS = [
-    {k:'start', t:'마음여행 출발', s:'1차시', from:1, to:1},
-    {k:'self',  t:'자기인식·관리', s:'자기 영역 · 2~7차시', from:2, to:7},
-    {k:'rel',   t:'소통·협력', s:'관계 영역 · 8~10차시', from:8, to:10},
-    {k:'com',   t:'책임', s:'공동체 영역 · 11~13차시', from:11, to:13},
-    {k:'care',  t:'마음돌봄', s:'마음 건강 영역 · 14~16차시', from:14, to:16},
-    {k:'end',   t:'마음여행 되돌아보기', s:'17차시', from:17, to:17}
+    {k:'start', t:'마음여행 출발', s:'1차시', from:1, to:1, img:'02-start'},
+    {k:'self',  t:'자기인식·관리', s:'자기 영역 · 2~7차시', from:2, to:7, img:'03-notice'},
+    {k:'rel',   t:'소통·협력', s:'관계 영역 · 8~10차시', from:8, to:10, img:'05-listen'},
+    {k:'com',   t:'책임', s:'공동체 영역 · 11~13차시', from:11, to:13, img:'07-choose'},
+    {k:'care',  t:'마음돌봄', s:'마음 건강 영역 · 14~16차시', from:14, to:16, img:'08-rest'},
+    {k:'end',   t:'마음여행 되돌아보기', s:'17차시', from:17, to:17, img:'10-reflect'}
   ];
   var WRITERS = {1:'한소연',2:'이영미',3:'이영미',4:'이영미',5:'이현주',6:'이현주',7:'이현주',8:'김상일',9:'김상일',10:'김상일',11:'신지수',12:'신지수',13:'신지수',14:'여한기',15:'여한기',16:'여한기',17:'한소연'};
   // 차시명·탐구질문·주요 활동: 합본(ver18) 「프로그램 한눈에 보기」와 각 차시 개관 그대로
@@ -345,7 +358,9 @@
       var items = L.filter(function(l){ return l[0] >= a.from && l[0] <= a.to; });
       if(!items.length) return;
       var s = el('section', 'area'); s.setAttribute('aria-label', a.t);
-      var h = el('div', 'area-h'); h.appendChild(el('h2', '', a.t)); h.appendChild(el('span', '', a.s)); s.appendChild(h);
+      var h = el('div', 'area-h'); h.appendChild(el('h2', '', a.t)); h.appendChild(el('span', '', a.s));
+      if(a.img){ var im = document.createElement('img'); im.className = 'area-art'; im.src = 'assets/img/' + a.img + '-600.webp'; im.width = 600; im.height = 400; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; h.appendChild(im); }
+      s.appendChild(h);
       var g = el('div', 'cards'); items.forEach(function(l){ g.appendChild(card(l)); shown++; }); s.appendChild(g);
       if(a.k === 'care'){
         var f = el('div', 'flow');
