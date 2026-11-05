@@ -228,7 +228,6 @@
     {k:'care',  t:'마음돌봄', s:'마음 건강 영역 · 14~16차시', from:14, to:16, img:'08-rest'},
     {k:'end',   t:'마음여행 되돌아보기', s:'17차시', from:17, to:17, img:'10-reflect'}
   ];
-  var WRITERS = {1:'한소연',2:'이영미',3:'이영미',4:'이영미',5:'이현주',6:'이현주',7:'이현주',8:'김상일',9:'김상일',10:'김상일',11:'신지수',12:'신지수',13:'신지수',14:'여한기',15:'여한기',16:'여한기',17:'한소연'};
   // 차시명·탐구질문·주요 활동: 합본(ver18) 「프로그램 한눈에 보기」와 각 차시 개관 그대로
   var L = [
     [1,'마음 여행, 함께 출발','마음의 힘을 왜 배우며 무엇을 기르고 싶은가?',['사회정서교육의 뜻과 필요성 알아보기','생활 장면에 필요한 마음의 힘 찾기','나의 마음여행 출발 카드 쓰기']],
@@ -296,7 +295,7 @@
 
   function card(l){
     var n = l[0], c = el('article', 'card'); c.id = 'l' + n;
-    var no = el('div', 'no'); no.appendChild(el('span', '', n + '차시')); no.appendChild(el('small', '', '집필 ' + WRITERS[n])); c.appendChild(no);
+    var no = el('div', 'no'); no.appendChild(el('span', '', n + '차시')); c.appendChild(no);
     c.appendChild(el('h3', '', l[1]));
     c.appendChild(el('p', 'iq', '탐구질문 · ' + l[2]));
     var ol = el('ol'); ['①','②','③'].forEach(function(m, i){ if(l[3][i]) ol.appendChild(el('li', '', m + ' ' + l[3][i])); }); c.appendChild(ol);
